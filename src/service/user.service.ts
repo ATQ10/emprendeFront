@@ -23,7 +23,8 @@ export class UserService {
           .get<User[]>(`${this.apiLink}/api/usuario/getAll`);
     }
 
-    createUser(user: User): Observable<User> {
+    createUser(user: User): Observable<any> {
+      console.log(user)
       return this.httpClient.post<User>(`${this.apiLink}/api/usuario/create`, user);
     }
 
