@@ -1,0 +1,14 @@
+/*a:link {
+    text-decoration: none;
+    background-color: brown;
+}
+
+a:active {
+    Cuando lo presionan
+}
+a:hover {
+    Cuando pasan por él
+}*/
+button{
+    color: rgb(47, 47, 47);
+}
