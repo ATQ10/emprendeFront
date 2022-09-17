@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/service/intercept/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public isMenuCollapsed = true;
-  constructor() { }
+  constructor(
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
+  }
+
+  logOut():void{
+    this.isMenuCollapsed = true;
+    this.authService.logOut();
   }
 
 }

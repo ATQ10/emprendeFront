@@ -25,7 +25,7 @@ export class UserService {
 
     createUser(user: User): Observable<any> {
       console.log(user)
-      return this.httpClient.post<User>(`${this.apiLink}/api/usuario/create`, user);
+      return this.httpClient.post<User>(`${this.apiLink}/api/usuario/register`, user);
     }
 
     updateClient(idUser: string = '', user: User): Observable<User> {
