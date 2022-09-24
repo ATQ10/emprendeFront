@@ -24,15 +24,14 @@ export class UserService {
     }
 
     createUser(user: User): Observable<any> {
-      console.log(user)
       return this.httpClient.post<User>(`${this.apiLink}/api/usuario/register`, user);
     }
 
-    updateClient(idUser: string = '', user: User): Observable<User> {
+    updateUser(idUser: string, user: User): Observable<User> {
       return this.httpClient.put<User>(`${this.apiLink}/api/usuario/${encodeURIComponent(idUser)}`, user);
     }
 
-    deleteClient(idUser: string = ''): Observable<User> {
+    deleteUser(idUser: string = ''): Observable<User> {
       return this.httpClient.delete<User>(`${this.apiLink}/api/usuario/${encodeURIComponent(idUser)}`);
   }
 }

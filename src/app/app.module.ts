@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './Components/register/register.component';
-import { PruebaComponent } from './Components/prueba/prueba.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,15 +12,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { MenuAccessComponent } from './Components/menu-access/menu-access.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { AuthInterceptorService } from 'src/service/intercept/auth-interceptor.service';
+import { MyPerfilComponent } from './Components/my-perfil/my-perfil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    PruebaComponent,
     LoginComponent,
     MenuAccessComponent,
-    HeaderComponent
+    HeaderComponent,
+    MyPerfilComponent
   ],
   imports: [
     BrowserModule,

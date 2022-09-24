@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-    usuario: any;
+    usuario: User | any;
     userForm = new FormGroup({
     email: new FormControl("",[ Validators.email ]),
     password: new FormControl("",[ Validators.required ]),

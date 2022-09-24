@@ -7,11 +7,11 @@ import { AuthService } from 'src/service/intercept/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   public isMenuCollapsed = true;
   constructor(
-    private authService: AuthService
-    ) { }
+    public authService: AuthService
+    ) {
+     }
 
   ngOnInit(): void {
   }
