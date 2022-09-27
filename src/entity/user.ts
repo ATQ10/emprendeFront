@@ -4,6 +4,6 @@ export interface User {
     password: string,
     nombre: string,
     apellido: string,
-    telefono: string,
+    telefono: string | null,
     creado: Date
 }

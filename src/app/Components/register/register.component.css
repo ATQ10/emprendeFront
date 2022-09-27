@@ -1,0 +1,48 @@
+.txtEmprenego{
+    color: #3FB1E5;
+}
+
+#titulo{
+    position: absolute;
+    z-index: 9;
+    transform: translate(-9px, -678px);
+}
+
+.logo{
+    position: absolute;
+    height: 430px;
+    width: auto;
+    transform: translate(45px, -494px);
+}
+
+#btnregister{
+    background-color: #3FB1E5;
+    border: none;
+    transform: translate(105px, 15px);
+    width:50%;
+}
+
+#slogan{
+    color: hsl(217, 10%, 50.8%);
+    font-size: 23px;
+    text-align: center;
+    transform: translate(5px, -112px);
+}
+
+#fondo{
+    background-color: #0F1827;
+    transform: translate(-71px, -5px);
+    height: 673px;
+    width:130%;
+    border-radius: 15px;
+    position: relative; 
+       
+}
+
+
+@media screen and (max-width: 767px){
+    #btnregister{
+        transform: translate(10px, 10px) !important; 
+    }
+
+}
