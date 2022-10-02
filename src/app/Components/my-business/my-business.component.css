@@ -1,0 +1,38 @@
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 .9em .9em  #3FB1E5;
+  transform: translateY(-0.25em);
+}
+
+button:hover,
+button:focus{
+    border-color: #0F1827   ;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: .5em 2em;
+  transition: 0.25s;
+}
+
+.section1{
+  background-color: #0F1827;
+  border-radius: 1rem 1rem;
+  color: white;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: larger;
+}
+
+.section1-1:hover{
+  background-color: #224073;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
