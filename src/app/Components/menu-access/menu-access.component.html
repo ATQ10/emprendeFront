@@ -13,24 +13,24 @@
 
     <div class="card-group">
       <div class="card"> <!--style="width: 18rem;"-->
-        <a [routerLink]="'../'"><img src="../../../assets/img/mDatos.jpg" class="card-img-top" alt="Imagen de mis datos"></a>
+        <a [routerLink]="'/myPerfil'"><img src="../../../assets/img/1.jpg" class="card-img-top" alt="Imagen de mis datos"></a>
         <div class="card-body">
           <p class="card-text">¡Actualiza tus datos personales para estar en contacto!</p>
-          <button type="button" class="btn btn-warning" [routerLink]="'/myPerfil'"><h5>Mis Datos</h5></button>
+          <button type="button" class="raise" [routerLink]="'/myPerfil'"><h5>Mis Datos</h5></button>
         </div>
       </div>
     
       <div class="card"> <!--style="width: 18rem;"-->
-        <a [routerLink]="'../'"><img src="../../../assets/img/mNeg.jpg" class="card-img-top" alt="Imagen de mi negocio"></a>
+        <a [routerLink]="'/myBusiness'"><img src="../../../assets/img/2.jpg" class="card-img-top" alt="Imagen de mi negocio"></a>
         <div class="card-body">
           <p class="card-text">¡Podrás controlar tus artículos, finanzas, inventario y registro de actividades!</p>
-            <button type="button" class="btn btn-warning" [routerLink]="'../'"><h5>Mi negocio</h5></button>
+            <button type="button" class="raise" id="slide" [routerLink]="'/myBusiness'"><h5>Mi negocio</h5></button>
         </div>
       </div>
       
       <div class="card"> <!--style="width: 18rem;"-->
-        <a [routerLink]="'../'"><img src="../../../assets/img/oNeg.jpg" class="card-img-top" alt="Imagen de otros negocios"></a>
-        <div class="card-body">
+        <a [routerLink]="'../'"><img src="../../../assets/img/3.jpg" class="card-img-top" alt="Imagen de otros negocios"></a>
+        <div class="card-body" style="align-items: center;">
           <p class="card-text">¡Observa otros negocios para apoyar las micro, pequeñas y medianas empresas!</p>
           <button type="button" class="btn btn-warning" [routerLink]="'/allBusiness'"><h5>Otros negocios</h5></button>
         </div>

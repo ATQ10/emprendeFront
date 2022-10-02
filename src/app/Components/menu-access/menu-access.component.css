@@ -1,14 +1,20 @@
-/*a:link {
-    text-decoration: none;
-    background-color: brown;
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 .9em .9em  #3FB1E5;
+  transform: translateY(-0.25em);
 }
 
-a:active {
-    Cuando lo presionan
+button:hover,
+button:focus{
+    border-color: #0F1827   ;
 }
-a:hover {
-    Cuando pasan por él
-}*/
-button{
-    color: rgb(47, 47, 47);
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: .5em 2em;
+  transition: 0.25s;
 }

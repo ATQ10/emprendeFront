@@ -7,6 +7,7 @@ import { HeaderComponent } from './Components/header/header.component';
 import { MenuAccessComponent } from './Components/menu-access/menu-access.component';
 import { MyPerfilComponent } from './Components/my-perfil/my-perfil.component';
 import { LoggedGuard } from 'src/service/guard/logged.guard';
+import { MyBusinessComponent } from './Components/my-business/my-business.component';
 import { AllBusinessComponent } from './Components/all-business/all-business.component';
 
 const routes: Routes = [
@@ -14,9 +15,10 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent, canActivate:[LoggedGuard], pathMatch: "full" },
   { path: "header", component: HeaderComponent, pathMatch: "full" },
   { path: "myPerfil", component: MyPerfilComponent, pathMatch: "full" },
+  { path: "", component: MenuAccessComponent, pathMatch: "full" },
+  { path: "myBusiness", component: MyBusinessComponent, pathMatch: "full" },
   { path: "allBusiness", component: AllBusinessComponent, pathMatch: "full" },
-  { path: "", component: MenuAccessComponent, pathMatch: "full" }
-  
+  { path: "", component: MenuAccessComponent, pathMatch: "full" }  
 ];
 
 @NgModule({
