@@ -7,13 +7,14 @@ import { HeaderComponent } from './Components/header/header.component';
 import { MenuAccessComponent } from './Components/menu-access/menu-access.component';
 import { MyPerfilComponent } from './Components/my-perfil/my-perfil.component';
 import { LoggedGuard } from 'src/service/guard/logged.guard';
+import { AllBusinessComponent } from './Components/all-business/all-business.component';
 
 const routes: Routes = [
-  //{ path: "", component: AppComponent, pathMatch: "full" },
   { path: "login", component: LoginComponent, canActivate:[LoggedGuard], pathMatch: "full" },
   { path: "register", component: RegisterComponent, canActivate:[LoggedGuard], pathMatch: "full" },
   { path: "header", component: HeaderComponent, pathMatch: "full" },
   { path: "myPerfil", component: MyPerfilComponent, pathMatch: "full" },
+  { path: "allBusiness", component: AllBusinessComponent, pathMatch: "full" },
   { path: "", component: MenuAccessComponent, pathMatch: "full" }
   
 ];
