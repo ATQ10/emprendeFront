@@ -1,26 +1,27 @@
 .txtEmprenego{
     color: #3FB1E5;
+    text-align: center;
 }
 
 #titulo{
     position: absolute;
     z-index: 9;
-    transform: translate(-9px, -678px);
+    transform: translate(-9px, -653px);
 }
 
 .logo{
     position: absolute;
     height: 430px;
     width: auto;
-    transform: translate(45px, -494px);
+    transform: translate(60px, -466px); 
 }
-
+/*
 #btnregister{
     background-color: #3FB1E5;
     border: none;
-    transform: translate(105px, 15px);
-    width:50%;
-}
+    margin: 0 auto;
+    width:100%;
+}*/
 
 #slogan{
     color: hsl(217, 10%, 50.8%);
@@ -32,17 +33,30 @@
 #fondo{
     background-color: #0F1827;
     transform: translate(-71px, -5px);
-    height: 673px;
+    height: 633px;
     width:130%;
     border-radius: 15px;
     position: relative; 
        
 }
 
+.raise{
+    /*box-shadow: 0 .9em .9em  #3FB1E5;
+     transform: translateY(-0.25em);*/
+     margin: 0 auto;
+     width: 100%;   
+}
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 .9em .9em  #3FB1E5;
+ /* transform: translateY(-0.25em);*/
+  margin: 0 auto;
+  width: 100%;
+}
 
 @media screen and (max-width: 767px){
-    #btnregister{
-        transform: translate(10px, 10px) !important; 
-    }
+ /*   #btnregister{
+            margin: 0 auto; 
+    }*/
 
 }
