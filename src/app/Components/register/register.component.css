@@ -11,9 +11,16 @@
 
 .logo{
     position: absolute;
-    height: 430px;
+    height: 400px !important;
     width: auto;
     transform: translate(60px, -466px); 
+    transition-duration: 0.5s;
+}
+
+.logo:hover{
+    transition-duration: 0.5s;
+    height: 410px !important ;
+    width: auto; 
 }
 /*
 #btnregister{
@@ -41,8 +48,8 @@
 }
 
 .raise{
-    /*box-shadow: 0 .9em .9em  #3FB1E5;
-     transform: translateY(-0.25em);*/
+    /*box-shadow: 0 .9em .9em  #3FB1E5;*/
+     transform: translateY(-0.25em);
      margin: 0 auto;
      width: 100%;   
 }

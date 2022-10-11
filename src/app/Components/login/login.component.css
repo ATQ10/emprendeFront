@@ -2,11 +2,12 @@
 .raise:focus {
   box-shadow: 0 .9em .9em  #3FB1E5;
   transform: translateY(-0.25em);
+
 }
 
 button:hover,
 button:focus{
-    border-color: #0F1827   ;
+    border-color: #0F1827;
 }
 
 button {
@@ -17,4 +18,40 @@ button {
   margin: 0.5em;
   padding: .5em 2em;
   transition: 0.25s;
+  position: relative;
+  left: 35%;
+}
+
+#chica{
+  width: 96%;
+  transition-duration: 0.5s;
+}
+#chica:hover{
+width: 98%;
+    transition-duration: 0.5s;
+}
+
+
+.d-flex.justify-content-end.mb-3.pb-1{
+  width: 70%;
+  position: relative;
+  left: 35%;
+  display: block;
+}
+
+.row.g-0{
+  padding: 15px;
+}
+
+a:hover{
+  color:  #3FB1E5 !important;
+}
+
+a{
+  text-align: center;
+    color: white !important;
+    background-color: #4C3F99;
+    border-radius: 4px;
+    text-decoration: unset;
+    padding: 6px;
 }
