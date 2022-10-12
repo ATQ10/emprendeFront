@@ -15,6 +15,7 @@ import { AuthInterceptorService } from 'src/service/intercept/auth-interceptor.s
 import { MyPerfilComponent } from './Components/my-perfil/my-perfil.component';
 import { MyBusinessComponent } from './Components/my-business/my-business.component';
 import { AllBusinessComponent } from './Components/all-business/all-business.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AllBusinessComponent } from './Components/all-business/all-business.com
     HeaderComponent,
     MyPerfilComponent,
     MyBusinessComponent,
-    AllBusinessComponent
+    AllBusinessComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
