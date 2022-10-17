@@ -16,6 +16,7 @@ import { MyPerfilComponent } from './Components/my-perfil/my-perfil.component';
 import { MyBusinessComponent } from './Components/my-business/my-business.component';
 import { AllBusinessComponent } from './Components/all-business/all-business.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot()
     ],
   providers: [

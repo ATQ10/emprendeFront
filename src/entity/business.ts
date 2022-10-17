@@ -1,4 +1,5 @@
 export interface Business {
+    _id: string,
     idU: string,
     nombre: string,
     descripcion: string,

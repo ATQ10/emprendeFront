@@ -12,6 +12,7 @@ import { ErrorService } from './error.service';
 export class AuthService {
   apiLink = environment.apiLink;
   isLogged = new BehaviorSubject(false);  
+  locationMenu = new BehaviorSubject<string>("");  
 
   constructor(
     private httpClient: HttpClient,
