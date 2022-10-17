@@ -1,0 +1,49 @@
+<!-- Section: Design Block -->
+<section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-4 px-md-4 text-center text-lg-start">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="card">
+              <div class="card-header">
+                <h2> Mi negocio </h2>
+              </div>
+              <div class="card-body py-5 px-md-5">
+                <form [formGroup]="businessForm" (submit)="OnSubmit()">
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1">Nombre</label>
+                        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example2">Inicio</label>
+                        <input id="inicioFecha" type="date" formControlName="inicioFecha" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Sede</label>
+                    <input id="sede" type="text" formControlName="sede" class="form-control" />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Descripción</label>
+                    <textarea id="descripcion" type="text" formControlName="descripcion" class="form-control"></textarea>
+                  </div>  
+                  <!-- Submit button -->
+                  <button type="submit" class="raise btn-block mb-4">
+                    <h5>{{this.submitButton}}</h5>
+                  </button>
+
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->

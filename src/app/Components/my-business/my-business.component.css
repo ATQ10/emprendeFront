@@ -24,9 +24,7 @@ button {
   border-radius: 1rem 1rem;
   color: white;
   padding: 1em;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  font-size: larger;
+  font-size: xx-large;
 }
 
 .section1-1:hover{
@@ -35,4 +33,10 @@ button {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.menu-business{
+  font-weight: 500;
+  font-size: 20pt;
+  cursor: pointer;
 }
