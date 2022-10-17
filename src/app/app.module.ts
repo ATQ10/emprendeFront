@@ -17,6 +17,7 @@ import { MyBusinessComponent } from './Components/my-business/my-business.compon
 import { AllBusinessComponent } from './Components/all-business/all-business.component';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MyPerfilComponent,
     MyBusinessComponent,
     AllBusinessComponent,
-    CarouselComponent
+    CarouselComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
