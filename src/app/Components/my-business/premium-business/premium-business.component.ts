@@ -4,11 +4,11 @@ import { BusinessService } from 'src/service/business.service';
 import { AuthService } from 'src/service/intercept/auth.service';
 
 @Component({
-  selector: 'app-products-business',
-  templateUrl: './products-business.component.html',
-  styleUrls: ['./products-business.component.css']
+  selector: 'app-premium-business',
+  templateUrl: './premium-business.component.html',
+  styleUrls: ['./premium-business.component.css']
 })
-export class ProductsBusinessComponent implements OnInit {
+export class PremiumBusinessComponent implements OnInit {
   idBusiness: String = "";
   constructor(
     private businessService: BusinessService,
@@ -17,7 +17,7 @@ export class ProductsBusinessComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {    
-    Promise.resolve().then(() => this.auth.locationMenu.next("products")); 
+    Promise.resolve().then(() => this.auth.locationMenu.next("premium")); 
     this.businessService.getByID("-1").subscribe(response=>{
       if(response.message == "No tenemos este negocio"){
         this.router.navigate(['myBusiness']);

@@ -4,6 +4,7 @@ import { ActivityBusinessComponent } from './activity-business/activity-business
 import { FinanceBusinessComponent } from './finance-business/finance-business.component';
 import { InventaryBusinessComponent } from './inventary-business/inventary-business.component';
 import { MyBusinessComponent } from './my-business.component';
+import { PremiumBusinessComponent } from './premium-business/premium-business.component';
 import { ProductsBusinessComponent } from './products-business/products-business.component';
 import { RegisterBusinessComponent } from './register-business/register-business.component';
 
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path: 'products', component: ProductsBusinessComponent
+      },
+      {
+        path: 'premium', component: PremiumBusinessComponent
       },
       { 
         path: '**', redirectTo: 'register'

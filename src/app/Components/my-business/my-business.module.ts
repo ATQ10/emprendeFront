@@ -9,7 +9,9 @@ import { ProductsBusinessComponent } from './products-business/products-business
 import { FinanceBusinessComponent } from './finance-business/finance-business.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { PremiumBusinessComponent } from './premium-business/premium-business.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaypalComponent } from './paypal/paypal.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     InventaryBusinessComponent,
     ActivityBusinessComponent,
     ProductsBusinessComponent,
-    FinanceBusinessComponent
+    FinanceBusinessComponent,
+    PremiumBusinessComponent,
+    PaypalComponent
   ],
   imports: [
     CommonModule,
     MyBusinessRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPayPalModule
   ]
 })
 export class MyBusinessModule { }

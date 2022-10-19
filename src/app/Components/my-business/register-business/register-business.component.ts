@@ -29,7 +29,7 @@ constructor(
 }
 
   ngOnInit(): void {
-    this.auth.locationMenu.next("register"); 
+    Promise.resolve().then(() => this.auth.locationMenu.next("register")); 
     this.businessService.getByID("-1").subscribe(response=>{
       //console.log(response);
       if(response.message == "No tenemos este negocio"){

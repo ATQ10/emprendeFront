@@ -18,6 +18,7 @@ import { AllBusinessComponent } from './Components/all-business/all-business.com
 import { CarouselComponent } from './Components/carousel/carousel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './Components/footer/footer.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    NgxPayPalModule,
     ToastrModule.forRoot()
     ],
   providers: [
