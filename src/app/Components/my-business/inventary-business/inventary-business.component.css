@@ -42,3 +42,11 @@
 .linkAdd:hover{
   transform: scale(1.1);
 }
+
+.areaImg{
+  text-align: center;
+}
+.imagenProducto{
+  max-height: 300px;
+  max-width: 100%;
+}

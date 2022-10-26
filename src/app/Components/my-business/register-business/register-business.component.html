@@ -33,6 +33,15 @@
                     <label class="form-label" for="form3Example3">Descripción</label>
                     <textarea id="descripcion" type="text" formControlName="descripcion" class="form-control"></textarea>
                   </div>  
+                  <div>
+                    <div class="areaImg">
+                      <img class="imagenProducto" *ngIf="this.url" [src]="apiLink+this.url">
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Logotipo</label>
+                    <input id="imagen" accept=".jpg,.png,.jpeg" type="file" (change)="getFile($event)" class="form-control"/>
+                  </div>
                   <!-- Submit button -->
                   <button type="submit" class="raise btn-block mb-4">
                     <h5>{{this.submitButton}}</h5>

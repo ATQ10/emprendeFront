@@ -1,3 +1,5 @@
+import { Archivo } from "./archivo";
+
 export interface Business {
     _id: string,
     idU: string,
@@ -5,5 +7,7 @@ export interface Business {
     descripcion: string,
     sede: string,
     inicioFecha: Date,
-    creado: Date
+    creado: Date,
+    url: string,
+    imagen: Archivo
 }

@@ -30,3 +30,11 @@ button {
   width: 100%;
   margin-top: 15px;
 }
+
+.areaImg{
+  text-align: center;
+}
+.imagenProducto{
+  max-height: 300px;
+  max-width: 100%;
+}

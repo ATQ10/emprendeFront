@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Business } from 'src/entity/business';
 import { BusinessService } from 'src/service/business.service';
 import { AuthService } from 'src/service/intercept/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register-business',
@@ -11,6 +12,9 @@ import { AuthService } from 'src/service/intercept/auth.service';
   styleUrls: ['./register-business.component.css']
 })
 export class RegisterBusinessComponent implements OnInit {
+  apiLink = environment.apiLink + "/public/"; 
+  fileTmp: any;
+  url: string = "";
   idBusiness: string | undefined;
   business: Business | any;
   submitButton: string = "Registrar"
@@ -19,6 +23,14 @@ export class RegisterBusinessComponent implements OnInit {
   descripcion: new FormControl("",[ Validators.required]),
   sede: new FormControl("",[Validators.required]),
   inicioFecha: new FormControl("",[Validators.required]),
+  idU: new FormControl(""),
+  _id: new FormControl(""),
+  url: new FormControl(""),
+  imagen: new FormControl(
+    {
+      fileRaw: "",
+      fileName: ""
+    }),
 });
 
 constructor(
@@ -36,10 +48,13 @@ constructor(
         this.toastr.warning("Registra un negocio")
       }else{
         this.submitButton = "Actualizar";
+        this.businessForm.controls._id.setValue(response._id);
+        this.businessForm.controls.idU.setValue(response.idU);
         this.businessForm.controls.nombre.setValue(response.nombre);
         this.businessForm.controls.sede.setValue(response.sede);
         this.businessForm.controls.descripcion.setValue(response.descripcion);
         this.businessForm.controls.inicioFecha.setValue(response.inicioFecha.substring(0, 10));
+        this.url = response.url;
         this.idBusiness = response._id;
       }
     });
@@ -52,16 +67,27 @@ constructor(
         this.businessService.updateBusiness(this.idBusiness!,this.business!).subscribe(response=>{
           console.log(response);
           this.toastr.success("Actualización exitosa");
+          this.ngOnInit();
         });
       }else{
         this.businessService.createBusiness(this.business!).subscribe(response=>{
           console.log(response);
           this.toastr.success("Registro exitoso");
           this.submitButton = "Actualizar";
+          this.ngOnInit();
         });
       }
     }else{
       this.toastr.error("Existen campos vacios")
     }
+  }
+  getFile($event:any){
+    const [ file ] = $event.target.files;
+    //console.log(file);
+    this.fileTmp = {
+      fileRaw:file,
+      fileName: file.name
+    };
+    this.businessForm.controls.imagen.setValue(this.fileTmp);
   }
 }

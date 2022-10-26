@@ -24,14 +24,32 @@ export class BusinessService {
     }
 
     createBusiness(business: Business): Observable<any> {
-      return this.httpClient.post<Business>(`${this.apiLink}/api/negocio/create`, business);
+      const body = new FormData();
+      body.append('descripcion',business.descripcion);
+      body.append('idU',business.idU);
+      body.append('inicioFecha',business.inicioFecha.toString());
+      body.append('nombre',business.nombre);
+      body.append('sede',business.sede);
+      if(business.imagen!=null)
+        body.append('imagen',business.imagen.fileRaw, business.imagen.fileName);
+      return this.httpClient.post<Business>(`${this.apiLink}/api/negocio/create`, body);
     }
 
     updateBusiness(idBusiness: string, business: Business): Observable<Business> {
-      return this.httpClient.put<Business>(`${this.apiLink}/api/negocio/${encodeURIComponent(idBusiness)}`, business);
+      console.log(business);
+      const body = new FormData();
+      body.append('_id',business._id);
+      body.append('descripcion',business.descripcion);
+      body.append('idU',business.idU);
+      body.append('inicioFecha',business.inicioFecha.toString());
+      body.append('nombre',business.nombre);
+      body.append('sede',business.sede);
+      if(business.imagen.fileName!="")
+        body.append('imagen',business.imagen.fileRaw, business.imagen.fileName);
+      return this.httpClient.put<Business>(`${this.apiLink}/api/negocio/${encodeURIComponent(idBusiness)}`, body);
     }
 
     deleteBusiness(idBusiness: string = ''): Observable<Business> {
       return this.httpClient.delete<Business>(`${this.apiLink}/api/negocio/${encodeURIComponent(idBusiness)}`);
-  }
+    }
 }

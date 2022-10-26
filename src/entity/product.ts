@@ -1,4 +1,6 @@
-export interface Product {
+import { Archivo } from "./archivo"
+
+export interface Product{
     _id: string,
     idN: string,
     nombre: string,
@@ -8,5 +10,7 @@ export interface Product {
     stock: number,
     minStock: number,
     detalles: string,
-    creado: Date
+    creado: Date,
+    url: string,
+    imagen: Archivo
 }

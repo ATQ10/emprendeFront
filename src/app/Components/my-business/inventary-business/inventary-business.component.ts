@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/entity/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/service/intercept/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-inventary-business',
@@ -15,6 +16,9 @@ import { AuthService } from 'src/service/intercept/auth.service';
   styleUrls: ['./inventary-business.component.css']
 })
 export class InventaryBusinessComponent implements OnInit {
+  apiLink = environment.apiLink + "/public/"; 
+  fileTmp: any;
+  url: string = "";
   titleModal: string = "Agregar un nuevo producto...";
   subTitleModal: string = "Alta de producto";
   submitButton: string = "Registrar"
@@ -23,6 +27,8 @@ export class InventaryBusinessComponent implements OnInit {
   faEdit = faEdit;
   products: Product[] = [];
   product: Product | any;
+  percentDone: number = 0;
+  uploadSuccess: boolean = false;
   productForm = new FormGroup({
     nombre: new FormControl("", [ Validators.required]),
     descripcion: new FormControl("",[ Validators.required]),
@@ -32,7 +38,13 @@ export class InventaryBusinessComponent implements OnInit {
     minStock: new FormControl("",[Validators.required]),
     detalles: new FormControl("",[Validators.required]),
     idN: new FormControl("",[Validators.required]),
-    _id: new FormControl("",[Validators.required]),
+    _id: new FormControl(""),
+    url: new FormControl(""),
+    imagen: new FormControl(
+      {
+        fileRaw: "",
+        fileName: ""
+      }),
   });
 
   constructor(
@@ -70,11 +82,14 @@ export class InventaryBusinessComponent implements OnInit {
 
   openXl(content: any, prod: any) {
     this.productForm.reset();
+    this.url = "";
     this.modalService.open(content, { size: 'xl' });
     if(prod != 'none'){   
       this.titleModal = "Modificar un producto...";
       this.subTitleModal = "Actualización de producto";
       this.productForm.controls._id.setValue(prod._id);
+      this.productForm.controls.url.setValue(prod.url);
+      this.url = prod.url;
       this.productForm.controls.nombre.setValue(prod.nombre);
       this.productForm.controls.idN.setValue(prod.idN);
       this.productForm.controls.descripcion.setValue(prod.descripcion);
@@ -91,18 +106,18 @@ export class InventaryBusinessComponent implements OnInit {
       this.submitButton = "Registrar";
     }
   }
-
   OnSubmit(){
     this.product! = this.productForm.value!;
     if(this.productForm.valid){
       if(this.submitButton != "Registrar"){
         this.product.idN = this.idBusiness;
         this.productService.updateProduct(this.product._id,this.product!).subscribe(response=>{
-          console.log(response);
+          //console.log(response);
           this.toastr.success("Actualización exitosa");
           this.ngOnInit();
           this.productForm.reset();
-          console.log(this.product)
+          this.url = "";
+          //console.log(this.product)
           this.modalService.dismissAll();
         });
       }else{
@@ -113,6 +128,7 @@ export class InventaryBusinessComponent implements OnInit {
           this.submitButton = "Actualizar";
           this.ngOnInit();
           this.productForm.reset();
+          this.url = "";
           console.log(this.product)
           this.modalService.dismissAll();
         });
@@ -120,5 +136,15 @@ export class InventaryBusinessComponent implements OnInit {
     }else{
       this.toastr.error("Existen campos vacios")
     }
+  }
+
+  getFile($event:any){
+    const [ file ] = $event.target.files;
+    //console.log(file);
+    this.fileTmp = {
+      fileRaw:file,
+      fileName: file.name
+    };
+    this.productForm.controls.imagen.setValue(this.fileTmp);
   }
 }
