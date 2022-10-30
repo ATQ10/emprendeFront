@@ -1,4 +1,4 @@
-<div class="fondo" > 
+<div class="fondo" *ngIf="!this.authService.isLogged.getValue()"> 
 <!--mostrar el carrousel-->
 <app-carousel></app-carousel>
 <div class="presentacion1" style="background-color: #000000; height:80px"></div>
@@ -45,14 +45,14 @@
 </div>
 
 
-<div class="contacto">
+  <div class="contacto">
   <p class="contactanos">¡CONTACTANOS! </p>
   <p class="texto_contactanos">Comunicate a Emprenego por medio de whatsapp o por medio de nuestro 
-    correo electrónico emprenego@hotmail.com</p> 
+    correo electrónico emprenego@gmail.com</p> 
   <a class="btnwa" target="_blank" href="https://wa.me/524492256726"><img class="logo_wa"src="../../../assets/img/logo_whatsapp2.png"></a>
   </div>
 
-  </div>
+</div>
 
 <div class="container" *ngIf="this.authService.isLogged.getValue()">
   <!--<div class="row px-4 pt-3">
@@ -95,6 +95,14 @@
               <h5>No se encontraron resultados</h5>
           </div>-->
     </div>
+
+      <div class="contacto">
+      <p class="contactanos">¡CONTACTANOS! </p>
+      <p class="texto_contactanos">Comunicate a Emprenego por medio de whatsapp o por medio de nuestro 
+        correo electrónico emprenego@gmail.com</p> 
+      <a class="btnwa" target="_blank" href="https://wa.me/524492256726"><img class="logo_wa"src="../../../assets/img/logo_whatsapp2.png"></a>
+      </div>
+
 
 
   </div>
