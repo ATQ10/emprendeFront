@@ -30,7 +30,7 @@ export class BusinessService {
       body.append('inicioFecha',business.inicioFecha.toString());
       body.append('nombre',business.nombre);
       body.append('sede',business.sede);
-      if(business.imagen!=null)
+      if(business.imagen.fileName!="")
         body.append('imagen',business.imagen.fileRaw, business.imagen.fileName);
       return this.httpClient.post<Business>(`${this.apiLink}/api/negocio/create`, body);
     }

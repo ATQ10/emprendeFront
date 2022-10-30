@@ -40,6 +40,7 @@ export class InventaryBusinessComponent implements OnInit {
     idN: new FormControl("",[Validators.required]),
     _id: new FormControl(""),
     url: new FormControl(""),
+    activo: new FormControl(true),
     imagen: new FormControl(
       {
         fileRaw: "",
@@ -98,6 +99,7 @@ export class InventaryBusinessComponent implements OnInit {
       this.productForm.controls.stock.setValue(prod.stock);
       this.productForm.controls.minStock.setValue(prod.minStock);
       this.productForm.controls.detalles.setValue(prod.detalles);
+      this.productForm.controls.activo.setValue(prod.activo);
       this.submitButton = "Actualizar";
     }else{
       this.titleModal = "Agregar un nuevo producto...";
@@ -121,6 +123,7 @@ export class InventaryBusinessComponent implements OnInit {
           this.modalService.dismissAll();
         });
       }else{
+        this.product.activo = true;
         this.product.idN = this.idBusiness;
         this.productService.createProduct(this.product!).subscribe(response=>{
           console.log(response);

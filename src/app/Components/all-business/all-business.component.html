@@ -8,164 +8,35 @@
     </div>
 </form>
 <div class="row resultados">
-    <div class="col-lg-4 col-md-5 col-sm-6">
+    <div class="col-lg-4 col-md-5 col-sm-6" *ngFor="let prod of this.products">
         <div class="card">
             <div class="card-header">
-                Nombre empresa
+                {{prod.nombre}}
             </div>
             <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
+                <div>
+                    <div class="areaImg">
+                      <img class="imagenProducto" *ngIf="prod.url" [src]="apiLink+prod.url">
+                    </div>
+                </div>
                 <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
+                    {{prod.descripcion}}
                 </p>
                 <p class="card-text">
                     <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
+                        Precio: ${{prod.precioVenta | number : '1.2-2'}} MXN
                     </small>
                 </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
+                <div class="areaImg">
+                    <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Nombre empresa
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Por: Nombre Dueño</h5>
-                <p class="card-text">
-                    Texto descriptivo de la empresa o emprendimiento, el cual será detallado por el creador del negocio
-                    , cabe destacar ...
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Sede: Aguascalientes, Ags.
-                    </small>
-                </p>
-                <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-            </div>
-        </div>
+    <div *ngIf="this.products.length==0">
+        <h2>
+            No se encontraron coincidencias... 
+            <a class="masProductos" (click)="ngOnInit()">¡Deseo ver más productos!</a>
+        </h2>
     </div>
 </div>

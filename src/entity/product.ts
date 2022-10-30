@@ -13,4 +13,5 @@ export interface Product{
     creado: Date,
     url: string,
     imagen: Archivo
+    activo: boolean
 }

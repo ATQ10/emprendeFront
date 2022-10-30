@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BusinessGuard } from 'src/service/guard/business.guard';
 import { ActivityBusinessComponent } from './activity-business/activity-business.component';
 import { FinanceBusinessComponent } from './finance-business/finance-business.component';
 import { InventaryBusinessComponent } from './inventary-business/inventary-business.component';
@@ -16,19 +17,19 @@ const routes: Routes = [
         path: 'register', component: RegisterBusinessComponent
       },
       {
-        path: 'inventary', component: InventaryBusinessComponent
+        path: 'inventary', component: InventaryBusinessComponent, canActivate:[BusinessGuard] 
       },
       {
-        path: 'activity', component: ActivityBusinessComponent
+        path: 'activity', component: ActivityBusinessComponent, canActivate:[BusinessGuard] 
       },
       {
-        path: 'finance', component: FinanceBusinessComponent
+        path: 'finance', component: FinanceBusinessComponent, canActivate:[BusinessGuard] 
       },
       {
-        path: 'products', component: ProductsBusinessComponent
+        path: 'products', component: ProductsBusinessComponent, canActivate:[BusinessGuard] 
       },
       {
-        path: 'premium', component: PremiumBusinessComponent
+        path: 'premium', component: PremiumBusinessComponent, canActivate:[BusinessGuard] 
       },
       { 
         path: '**', redirectTo: 'register'

@@ -5,13 +5,13 @@
   
 }
 
-button:hover,
-button:focus{
+.button-submit:hover,
+.button-submit:focus{
     border-color: #0F1827;
     margin: 0 auto;
 }
 
-button {
+.button-submit {
   background: none;
   border: 2px solid;
   font: inherit;
@@ -29,4 +29,85 @@ button {
   text-align: center;
   width: 100%;
   margin-top: 15px;
+}
+
+.linkAdd{
+  float: right;
+}
+
+.linkAdd{
+  color: black;
+  cursor: pointer;
+}
+.linkAdd:hover{
+  transform: scale(1.1);
+}
+
+.areaImg{
+  text-align: center;
+}
+.imagenProducto{
+  max-height: 200px;
+  max-width: 100%;
+}
+
+.input-checkbox{
+  display: none;
+}
+#advanced-checkbox{
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+}
+.slider{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+cursor: pointer;
+background-color: #bc2612;
+border-radius: 25px;
+font-size: 12px;
+text-align: center;
+}
+.slider::before {
+content: "";
+width: 50%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+background-color: #eee;
+border-radius: 25px;
+}
+.slider::after{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  content: 'No';
+  left: 50%;
+  top: 0px;
+}
+.slider, .slider::before {
+  transition: all 0.2s;
+}
+
+.input-checkbox:checked + .slider {
+  border: 2px solid #258805;
+  background-color: #55aa7f;
+}
+
+.input-checkbox:checked + .slider::before {
+  left: 50%;
+}
+.input-checkbox:checked + .slider::after {
+content: "Sí";
+left: 0;
+}
+
+span{
+  font-weight: 800;
+  font-size: large;
 }

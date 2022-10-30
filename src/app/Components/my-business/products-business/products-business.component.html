@@ -1,20 +1,129 @@
 <!-- Section: Design Block -->
-<section class="">
-    <!-- Jumbotron -->
-    <div class="px-4 py-4 px-md-4 text-center text-lg-start">
-      <div class="container">
-        <div class="row gx-lg-5 align-items-center">
-            <div class="card">
-              <div class="card-header">
-                <h2> Administración de Productos </h2>
-              </div>
-              <div class="card-body py-5 px-md-5">
-
-              </div>
+<section class="container">
+  <!-- Jumbotron -->
+  <div class="px-4 py-4 px-md-4 text-center text-lg-start">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+          <div class="card">
+            <div class="card-header">
+              <h2> Mis productos 
+              </h2>
             </div>
-        </div>
+            <div class="card-body py-1 px-md-1">
+              <div class="row pt-1" *ngIf="this.products.length>0">
+                <div class="col d-flex justify-content-center">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Stock mínimo</th>
+                                    <th scope="col" colspan="3">Acciones</th>
+                                    <th scope="col">Habilitado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let prod of this.products; let i=index">
+                                      <td [style]="getBackground(prod)">{{i+1}}</td>
+                                      <td [style]="getBackground(prod)">{{prod.nombre}}</td>
+                                      <td [style]="getBackground(prod)">{{prod.stock}}</td>
+                                      <td [style]="getBackground(prod)">{{prod.minStock}}</td>
+                                      <td><button class="btn btn-success" (click)="openXl(content,prod,'Compra')">Compra</button></td>
+                                      <td><button class="btn btn-warning" (click)="openXl(content,prod,'Venta')">Venta</button></td>
+                                      <td><button class="btn btn-info">Visitar</button></td>
+                                      <td>
+                                        <label id="advanced-checkbox">
+                                          <input type="checkbox" [(ngModel)]="this.products[i].activo" class='input-checkbox' (change)="setActivo(this.products[i])"/>
+                                          <span class="slider"></span>
+                                        </label>
+                                      </td>
+                                </tr>                                 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
       </div>
     </div>
-    <!-- Jumbotron -->
-  </section>
-  <!-- Section: Design Block -->
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{this.titleModal}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+          <div class="card">
+            <div class="card-header">
+              <h2> {{this.subTitleModal}} </h2>
+            </div>
+            <div class="card-body py-5 px-md-5">
+              <form [formGroup]="productForm" (submit)="OnSubmit()">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form3Example3"><b>Descripción</b></label>
+                      <textarea id="descripcion" type="text" formControlName="descripcion" class="form-control" readonly></textarea>
+                    </div>
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1"><b>Stock</b></label>
+                      <input id="stock" type="number" formControlName="stock" class="form-control" readonly />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div>
+                      <div class="areaImg">
+                        <img class="imagenProducto" *ngIf="this.url" [src]="apiLink+this.url">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline" *ngIf="!this.isVenta">
+                      <label class="form-label" for="form3Example1"><b>Precio compra</b></label>
+                      <input id="precioCompra" type="number" formControlName="precioCompra" class="form-control" (change)="OnChange()" />
+                    </div>
+                    <div class="form-outline" *ngIf="this.isVenta">
+                      <label class="form-label" for="form3Example2"><b>Precio venta</b></label>
+                      <input id="precioVenta" type="number" formControlName="precioVenta" class="form-control" (change)="OnChange()" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example2"><b>Cantidad</b></label>
+                      <input id="cantidad" type="number" formControlName="cantidad" 
+                      min="1" max="{{this.productForm.controls.stock.value}}" class="form-control" 
+                      (change)="OnChange()" *ngIf="this.isVenta"/>
+                    <input id="cantidad" type="number" formControlName="cantidad" 
+                      min="1" class="form-control" 
+                      (change)="OnChange()" *ngIf="!this.isVenta"/>
+                    </div>
+                  </div>
+                </div>
+                <span class="linkAdd">
+                  Total: ${{this.productForm.controls.total.value | number : '1.2'}} MXN
+                </span>
+                <!-- Submit button -->
+                <button type="submit" class="raise btn-block mb-4 button-submit">
+                  <h5>{{this.submitButton}}</h5>
+                </button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>

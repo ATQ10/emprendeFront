@@ -48,3 +48,16 @@ button {
   padding: .5em 2em;
   transition: 0.25s;
 }
+.areaImg{
+    text-align: center;
+}
+.imagenProducto{
+    max-height: 200px;
+    max-width: 100%;
+}
+.masProductos{
+    color: #335898;
+    cursor: pointer;
+}
+
+  

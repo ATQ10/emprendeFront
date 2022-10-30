@@ -32,6 +32,7 @@ export class ProductService {
       body.append('precioCompra',Product.precioCompra.toString());
       body.append('stock',Product.stock.toString());
       body.append('precioVenta',Product.precioVenta.toString());
+      body.append('activo',Product.activo.toString());
       if(Product.imagen!=null)
         body.append('imagen',Product.imagen.fileRaw, Product.imagen.fileName);
 
@@ -52,6 +53,7 @@ export class ProductService {
       body.append('precioCompra',Product.precioCompra.toString());
       body.append('stock',Product.stock.toString());
       body.append('precioVenta',Product.precioVenta.toString());
+      body.append('activo',Product.activo.toString());
       if(Product.imagen!=null)
         body.append('imagen',Product.imagen.fileRaw, Product.imagen.fileName);
 
