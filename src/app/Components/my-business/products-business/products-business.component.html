@@ -30,8 +30,14 @@
                                       <td [style]="getBackground(prod)">{{prod.nombre}}</td>
                                       <td [style]="getBackground(prod)">{{prod.stock}}</td>
                                       <td [style]="getBackground(prod)">{{prod.minStock}}</td>
-                                      <td><button class="btn btn-success" (click)="openXl(content,prod,'Compra')">Compra</button></td>
-                                      <td><button class="btn btn-warning" (click)="openXl(content,prod,'Venta')">Venta</button></td>
+                                      <td>
+                                        <button *ngIf="prod.precioCompra!=0" class="btn btn-success" (click)="openXl(content,prod,'Compra')">Comprar</button>
+                                        <button *ngIf="prod.precioCompra==0" class="btn btn-success" (click)="openXl(content,prod,'Preparación')">Preparar</button>
+                                      </td>
+                                      <td>
+                                        <button *ngIf="prod.precioVenta!=0" class="btn btn-warning" (click)="openXl(content,prod,'Venta')">Vender</button>
+                                        <button *ngIf="prod.precioVenta==0" class="btn btn-warning" (click)="openXl(content,prod,'Utilización')">Utilizar</button>
+                                      </td>
                                       <td><button class="btn btn-info">Visitar</button></td>
                                       <td>
                                         <label id="advanced-checkbox">

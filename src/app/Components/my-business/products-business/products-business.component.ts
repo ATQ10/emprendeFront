@@ -81,7 +81,7 @@ export class ProductsBusinessComponent implements OnInit {
   }
 
   openXl(content: any, prod: any, type: any) {
-    if(type=='Venta'){
+    if(type=='Venta' || type=='Utilización'){
       this.isVenta = true
     }else{
       this.isVenta = false
