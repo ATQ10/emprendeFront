@@ -1,3 +1,7 @@
+.fondo{
+    min-height: calc(100vh - 10px);
+  }
+
 .txtEmprenego{
     color: #3FB1E5;
     text-align: center;
