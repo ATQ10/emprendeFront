@@ -125,6 +125,9 @@ export class InventaryBusinessComponent implements OnInit {
       }else{
         this.product.activo = true;
         this.product.idN = this.idBusiness;
+        if(this.product.precioVenta == 0 ){
+          this.product.activo = false;
+        }
         this.productService.createProduct(this.product!).subscribe(response=>{
           console.log(response);
           this.toastr.success("Registro exitoso");
