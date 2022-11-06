@@ -9,6 +9,9 @@ import { Product } from 'src/entity/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/service/intercept/auth.service';
 import { environment } from 'src/environments/environment';
+import { Move } from 'src/entity/move';
+import { FinanceService } from 'src/service/finance.service';
+import { ParseFlags } from '@angular/compiler';
 @Component({
   selector: 'app-products-business',
   templateUrl: './products-business.component.html',
@@ -51,6 +54,7 @@ export class ProductsBusinessComponent implements OnInit {
   constructor(
     private businessService: BusinessService,
     private productService: ProductService,
+    private financeService: FinanceService,
     private toastr: ToastrService,
     private router: Router,
     private modalService: NgbModal,
@@ -158,6 +162,33 @@ export class ProductsBusinessComponent implements OnInit {
       this.product.idN = this.idBusiness;
       console.log(this.product)
       this.productService.updateProduct(this.product._id,this.product!).subscribe(response=>{
+        //Create a Finance
+        if(this.productForm.controls.cantidad.value! > 0){
+          console.log("New finance")
+          let move: Move;
+          move = {
+            descripcion: "",
+            monto: this.productForm.controls.total.value!,
+            tipo: "",
+            _id: "", 
+            idU: "", 
+            fecha: new Date(Date.now()), 
+            creado: new Date(Date.now())
+          };
+          if(this.isVenta){
+            move.descripcion = "Venta de ";
+            move.tipo = "Venta";
+          }
+          else{
+            move.descripcion = "Compra de ";
+            move.tipo = "Compra";
+          }
+          move.descripcion += this.productForm.controls.cantidad.value! + " " + this.productForm.controls.nombre.value!;
+        //  this.financeService.createMove(move).subscribe(financeResponse => {
+        //    console.log("Nueva finanza:", financeResponse);
+        //  });
+        }
+        
         //console.log(response);
         this.toastr.success("Actualización exitosa");
         this.ngOnInit();
