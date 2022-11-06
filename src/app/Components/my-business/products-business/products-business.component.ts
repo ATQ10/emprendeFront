@@ -84,6 +84,12 @@ export class ProductsBusinessComponent implements OnInit {
     if(type=='Venta' || type=='Utilización'){
       this.isVenta = true
     }else{
+      if(type=='Preparación'){
+        this.toastr.toastrConfig.closeButton = true;
+        this.toastr.toastrConfig.disableTimeOut = true;
+        this.toastr.toastrConfig.positionClass = 'toast-center-center';
+        this.toastr.warning("No olvides actualizar tu inventario con los articulos que utilizaste para preparar este producto");
+      }
       this.isVenta = false
     }
     this.submitButton = "Concretar " + type;

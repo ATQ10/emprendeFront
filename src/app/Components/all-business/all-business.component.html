@@ -1,42 +1,44 @@
-<form class="searchForm" [formGroup]="searchForm" (submit)="OnSubmit()">
-    <div class="row">
-        <div class="form-outline">
-          <label class="form-label" for="form3Example1">¿Qué estas buscando?</label>
-          <input id="search" type="text" formControlName="search" class="form-control" placeholder="Palabras claves..." />
-          <button type="submit" class="raise mb-2"><h5>Buscar</h5></button>
-        </div>
-    </div>
-</form>
-<div class="row resultados">
-    <div class="col-lg-4 col-md-5 col-sm-6" *ngFor="let prod of this.products">
-        <div class="card">
-            <div class="card-header">
-                {{prod.nombre}}
+<div class="fondo">
+    <form class="searchForm" [formGroup]="searchForm" (submit)="OnSubmit()">
+        <div class="row">
+            <div class="form-outline">
+              <label class="form-label" for="form3Example1">¿Qué estas buscando?</label>
+              <input id="search" type="text" formControlName="search" class="form-control" placeholder="Palabras claves..." />
+              <button type="submit" class="raise mb-2"><h5>Buscar</h5></button>
             </div>
-            <div class="card-body">
-                <div>
+        </div>
+    </form>
+    <div class="row resultados">
+        <div class="col-lg-4 col-md-5 col-sm-6" *ngFor="let prod of this.products">
+            <div class="card">
+                <div class="card-header">
+                    {{prod.nombre}}
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="areaImg">
+                          <img class="imagenProducto" *ngIf="prod.url" [src]="apiLink+prod.url">
+                        </div>
+                    </div>
+                    <p class="card-text">
+                        {{prod.descripcion}}
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            Precio: ${{prod.precioVenta | number : '1.2-2'}} MXN
+                        </small>
+                    </p>
                     <div class="areaImg">
-                      <img class="imagenProducto" *ngIf="prod.url" [src]="apiLink+prod.url">
+                        <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
                     </div>
                 </div>
-                <p class="card-text">
-                    {{prod.descripcion}}
-                </p>
-                <p class="card-text">
-                    <small class="text-muted">
-                        Precio: ${{prod.precioVenta | number : '1.2-2'}} MXN
-                    </small>
-                </p>
-                <div class="areaImg">
-                    <button type="submit" class="raise mb-2"><h6>Visitar</h6></button>
-                </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="this.products.length==0">
-        <h2>
-            No se encontraron coincidencias... 
-            <a class="masProductos" (click)="ngOnInit()">¡Deseo ver más productos!</a>
-        </h2>
+        <div *ngIf="this.products.length==0">
+            <h2>
+                No se encontraron coincidencias... 
+                <a class="masProductos" (click)="ngOnInit()">¡Deseo ver más productos!</a>
+            </h2>
+        </div>
     </div>
 </div>

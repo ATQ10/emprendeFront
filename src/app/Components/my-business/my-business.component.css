@@ -1,3 +1,7 @@
+.fondo{
+  min-height: calc(100vh - 10px);
+}
+
 .raise:hover,
 .raise:focus {
   box-shadow: 0 .9em .9em  #3FB1E5;
