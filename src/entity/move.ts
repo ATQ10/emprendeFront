@@ -1,4 +1,5 @@
 export interface Move {
+    _id: string,
     idU: string,
     descripcion: string,
     monto: number,
