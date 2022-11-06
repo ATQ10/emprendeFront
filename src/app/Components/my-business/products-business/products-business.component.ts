@@ -165,12 +165,10 @@ export class ProductsBusinessComponent implements OnInit {
         //Create a Finance
         if(this.productForm.controls.cantidad.value! > 0){
           console.log("New finance")
-          let move: Move;
-          move = {
+          let move = {
             descripcion: "",
             monto: this.productForm.controls.total.value!,
             tipo: "",
-            _id: "", 
             idU: "", 
             fecha: new Date(Date.now()), 
             creado: new Date(Date.now())
