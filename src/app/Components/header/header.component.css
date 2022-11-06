@@ -21,3 +21,41 @@
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/*VERSIONES RESPONSIVAS DEL HEADER
+@media screen and (max-width:320px) {
+    .navbar{
+        width: 525px !important;
+    } 
+}
+
+@media screen and (max-width:480px) {
+    .navbar{
+        width: 525px !important;
+    } 
+}
+*/
+
+@media screen and (max-width:768px) {
+    .collapse.navbar-collapse.opciones{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width:991px) {
+    .collapse.navbar-collapse.opciones{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .collapse.navbar-collapse.opciones{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width:1366px) {
+    .collapse.navbar-collapse.opciones{
+        margin-right: 30px;
+    }
+}

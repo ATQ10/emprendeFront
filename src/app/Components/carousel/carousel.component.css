@@ -17,3 +17,36 @@ img{
 .carousel-caption{
     background-color:rgba(0,0,0,0.5);
 }
+
+.btn_otrosnegocios{
+    width: 20%;
+    height: 10%;
+    background-color: #3FB1E5;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    transform: translate(-50%);
+    font-family: auto;
+    text-decoration: none;
+    cursor:pointer;
+    padding-top: 11px !important;
+    font-size: 17px;
+}
+
+.btn_otrosnegocios:hover{
+    background-color: #455A64;
+    transition-duration: 0.5s;
+}
+
+
+@media screen and (max-width: 320px) {
+    .btn_otrosnegocios{
+        width: 70% !important;
+        top: 30% !important;
+      }
+}
