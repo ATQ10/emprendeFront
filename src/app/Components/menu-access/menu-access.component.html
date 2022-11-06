@@ -7,10 +7,10 @@
   <p class= "textoquienes_somos"><span style="color:#3FB1E5 ">"Emprenego"</span> surge de un pequeño grupo de Ingenieros en Sistemas Computacionales, 
     comprometidos en querer ayudar a pequeños y grandes emprendedores mediante tecnología a nuestro alcance. </p>
 </div>
-<h1 style="text-align:center"> NUESTRO EQUIPO</h1>
+<h1 class="titulo_nuestroequipo"style="text-align:center"> NUESTRO EQUIPO</h1>
 
-<div>
-    <table style="margin:0 auto">
+<div class="container-fluid " id="pics">
+    <!--<table class="table col-md-3">
       <td>
         <div class="div-imagen">
           <img class="arnoldo" src="../../assets/img/arnoldo.jpg"/>
@@ -26,9 +26,19 @@
           <img class="yami" src="../../assets/img/yami.jpg"/>
         </div>
         </td>
-    </table>
+    </table>-->
+
+        <div class="card-pic arnoldo">
+          <img src="../../assets/img/arnoldo.jpg"/>
+        </div>
+        <div class="card-pic lore">
+          <img src="../../assets/img/loredana.jpg"/>
+        </div>
+        <div class="card-pic yami">
+          <img src="../../assets/img/yami.jpg"/>
+        </div>
 </div>
-<div class="dividir_columnas">
+<div class=" container dividir_columnas">
   <div class="mision_vision">
     <h1>MISIÓN</h1>
     <p class= "textomision_vision">Nuestra misión es que los emprendedores puedan crecer 
@@ -36,7 +46,7 @@
       </p>
   </div>
 
-  <div class="mision_vision">
+  <div class="container mision_vision">
     <h1>VISIÓN</h1>
     <p class= "textomision_vision"> Nuestra visión es convertirnos en la 
       empresa más confiable para impulsar a aquellos emprendedores que 
@@ -44,6 +54,11 @@
   </div>
 </div>
 
+<div class="div_otros_negocios">
+
+  <p class="texto_otros_negocios">Conoce productos de otros emprendedores, da click aquí abajo</p>
+  <a [routerLink]="'../allBusiness'" class="btn_otrosnegocios">Otros negocios</a>
+</div>
 
   <div class="contacto">
   <p class="contactanos">¡CONTACTANOS! </p>
@@ -51,10 +66,9 @@
     correo electrónico emprenego@gmail.com</p> 
   <a class="btnwa" target="_blank" href="https://wa.me/524492256726"><img class="logo_wa"src="../../../assets/img/logo_whatsapp2.png"></a>
   </div>
-
 </div>
+<div class="container" *ngIf="this.authService.isLogged.getValue()">
 
-<div class="container fondo" *ngIf="this.authService.isLogged.getValue()">
   <!--<div class="row px-4 pt-3">
       <div class="col-12">
           <h2>Por si se quiere título</h2>
@@ -96,15 +110,11 @@
           </div>-->
     </div>
 
-      <div class="contacto">
-      <p class="contactanos">¡CONTACTANOS! </p>
-      <p class="texto_contactanos">Comunicate a Emprenego por medio de whatsapp o por medio de nuestro 
-        correo electrónico emprenego@gmail.com</p> 
+      <div class="contacto" style="border-radius:6px; height: 70%; opacity: 1;">
+      <p class="contactanos" style="font-size:150%">Estimado emprendedor: </p>
+      <p class="texto_contactanos" style="font-size: 100%;">Si tienes alguna duda o sugerencia comunicate al whatsapp +52 4492256727 o al correo emprenego@gmail.com</p> 
       <a class="btnwa" target="_blank" href="https://wa.me/524492256726"><img class="logo_wa"src="../../../assets/img/logo_whatsapp2.png"></a>
       </div>
-
-
-
   </div>
   
   
