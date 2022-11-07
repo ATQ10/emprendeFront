@@ -1,0 +1,71 @@
+.cont{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.r1{
+    margin-left:1%;
+}
+
+.card-header{
+    background-color: #3FB1E5;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.ch1{
+    text-transform: uppercase;
+    font-size:x-large;
+}
+
+.desc{
+    height: 40%;
+}
+
+.sede{
+    color:darkblue;
+}
+
+.modEmp{
+    text-align: center;
+}
+
+img{
+    width: 90%;
+    border-radius: 10px;
+}
+
+.comentarios{
+    height: auto;
+}
+
+.comentarios p.nomC{
+    text-align: start;
+
+}
+
+.comentarios p.fecC{
+    text-align: end;
+    font-size: small;
+    color: gray;
+}
+
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 .9em .9em rgba(76,63,153,1);
+  transform: translateY(-0.25em);
+}
+
+button:hover,
+button:focus{
+    border-color: #0F1827   ;
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  padding: .5em 2em;
+  transition: 0.25s;
+}

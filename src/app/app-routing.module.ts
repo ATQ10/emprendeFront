@@ -11,6 +11,7 @@ import { LoggedGuard } from 'src/service/guard/logged.guard';
 import { MyBusinessComponent } from './Components/my-business/my-business.component';
 import { AllBusinessComponent } from './Components/all-business/all-business.component';
 import { NoLoggedGuard } from 'src/service/guard/no-logged.guard';
+import { ProductsComponent } from './Components/products/products.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate:[LoggedGuard] },
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: "myPerfil", component: MyPerfilComponent },
   { path: 'myBusiness', loadChildren: () => import(`./Components/my-business/my-business.module`).then(m => m.MyBusinessModule), canActivate:[NoLoggedGuard]},
   { path: "allBusiness", component: AllBusinessComponent },
-  { path: "home", component: MenuAccessComponent},  
-  { path: "**", redirectTo: 'home'}  
+  { path: "home", component: MenuAccessComponent},
+  { path: "products", component: ProductsComponent },
+  { path: "**", redirectTo: 'home'}
 ];
 
 @NgModule({

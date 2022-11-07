@@ -19,6 +19,7 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { ProductsComponent } from './Components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MyBusinessComponent,
     AllBusinessComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
