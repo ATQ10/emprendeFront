@@ -20,7 +20,7 @@ const routes: Routes = [
         path: 'inventary', component: InventaryBusinessComponent, canActivate:[BusinessGuard] 
       },
       {
-        path: 'activity', component: ActivityBusinessComponent, canActivate:[BusinessGuard] 
+        path: 'activity', component: ActivityBusinessComponent
       },
       {
         path: 'finance', component: FinanceBusinessComponent, canActivate:[BusinessGuard] 

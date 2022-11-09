@@ -5,13 +5,13 @@
   
 }
 
-button:hover,
-button:focus{
+.button-submit:hover,
+.button-submit:focus{
     border-color: #0F1827;
     margin: 0 auto;
 }
 
-button {
+.button-submit {
   background: none;
   border: 2px solid;
   font: inherit;
@@ -19,8 +19,6 @@ button {
  /* margin: 0.5em;*/
   padding: .5em 2em;
   transition: 0.25s;
-  left: 40%;
-  position: relative;
 }
 
 .card-header{
@@ -29,4 +27,16 @@ button {
   text-align: center;
   width: 100%;
   margin-top: 15px;
+}
+
+.linkAdd{
+  float: right;
+}
+
+.linkAdd{
+  color: black;
+  cursor: pointer;
+}
+.linkAdd:hover{
+  transform: scale(1.1);
 }
