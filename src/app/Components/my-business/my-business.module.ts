@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PremiumBusinessComponent } from './premium-business/premium-business.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaypalComponent } from './paypal/paypal.component';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PaypalComponent } from './paypal/paypal.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatTabsModule
   ]
 })
 export class MyBusinessModule { }

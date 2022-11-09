@@ -24,7 +24,7 @@ export class FinanceService {
           .get<Move[]>(`${this.apiLink}/api/movimiento/getAll`);
     }
 
-    createMove(move: Move): Observable<any> {
+    createMove(move: any): Observable<any> {
       return this.httpClient.post<Move>(`${this.apiLink}/api/movimiento/create`, move);
     }
 

@@ -8,7 +8,116 @@
               <div class="card-header">
                 <h2> Mis finanzas </h2>
               </div>
-              <div class="card-body py-5 px-md-5">
+              <div class="card-body">
+                <mat-tab-group>
+                  <mat-tab label="General"> 
+                    <div class="col d-flex justify-content-center">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class="thead-dark">
+                                  <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Descripción</th>
+                                      <th scope="col">Monto</th>
+                                      <th scope="col">Fecha</th>
+                                      <th scope="col">Acciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let finance of this.finances; let i=index">
+                                        <td >{{i+1}}</td>
+                                        <td >{{finance.descripcion}}</td>
+                                        <td >${{finance.monto | number : '1.2'}} MXN</td>
+                                        <td >{{finance.fecha.toString().substring(0,10)}}</td>
+                                        <td>
+                                          <button class="btn btn-danger" (click)="delete(finance)">Eliminar</button>
+                                        </td>
+                                  </tr>            
+                                  
+                                  <tr>
+                                    <td ></td>
+                                    <td ><B>TOTAL:</B></td>
+                                    <td >${{this.total | number : '1.2'}} MXN</td>
+                                    <td ></td>
+                                    <td ></td>
+                                  </tr>                       
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Ingresos">
+                    <div class="col d-flex justify-content-center">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class="thead-dark">
+                                  <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Descripción</th>
+                                      <th scope="col">Monto</th>
+                                      <th scope="col">Fecha</th>
+                                      <th scope="col">Acciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let finance of this.finances; let i=index">
+                                        <td *ngIf="finance.tipo == 'Venta'">{{i+1}}</td>
+                                        <td *ngIf="finance.tipo == 'Venta'">{{finance.descripcion}}</td>
+                                        <td *ngIf="finance.tipo == 'Venta'">${{finance.monto | number : '1.2'}} MXN</td>
+                                        <td *ngIf="finance.tipo == 'Venta'">{{finance.fecha.toString().substring(0,10)}}</td>
+                                        <td *ngIf="finance.tipo == 'Venta'">
+                                          <button class="btn btn-danger" (click)="delete(finance)">Eliminar</button>
+                                        </td>
+                                  </tr>      
+                                  
+                                  <tr>
+                                    <td ></td>
+                                    <td ><B>TOTAL:</B></td>
+                                    <td >${{this.ingresos | number : '1.2'}} MXN</td>
+                                    <td ></td>
+                                    <td ></td>
+                                  </tr>                             
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="Egresos">
+                    <div class="col d-flex justify-content-center">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class="thead-dark">
+                                  <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Descripción</th>
+                                      <th scope="col">Monto</th>
+                                      <th scope="col">Fecha</th>
+                                      <th scope="col">Acciones</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let finance of this.finances; let i=index">
+                                        <td *ngIf="finance.tipo == 'Compra'">{{i+1}}</td>
+                                        <td *ngIf="finance.tipo == 'Compra'">{{finance.descripcion}}</td>
+                                        <td *ngIf="finance.tipo == 'Compra'">${{finance.monto | number : '1.2'}} MXN</td>
+                                        <td *ngIf="finance.tipo == 'Compra'">{{finance.fecha.toString().substring(0,10)}}</td>
+                                        <td *ngIf="finance.tipo == 'Compra'">
+                                          <button class="btn btn-danger" (click)="delete(finance)">Eliminar</button>
+                                        </td>
+                                  </tr> 
+                                  <tr>
+                                    <td ></td>
+                                    <td ><B>TOTAL:</B></td>
+                                    <td >${{this.egresos | number : '1.2'}} MXN</td>
+                                    <td ></td>
+                                    <td ></td>
+                                  </tr>                                  
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
 
               </div>
             </div>

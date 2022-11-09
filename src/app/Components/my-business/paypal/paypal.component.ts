@@ -24,11 +24,11 @@ export class PaypalComponent implements OnInit {
         {
           amount: {
             currency_code: 'MXN',
-            value: '5',
+            value: '30',
             breakdown: {
               item_total: {
                 currency_code: 'MXN',
-                value: '5'
+                value: '30'
               }
             }
           },
@@ -39,7 +39,7 @@ export class PaypalComponent implements OnInit {
               category: 'DIGITAL_GOODS',
               unit_amount: {
                 currency_code: 'MXN',
-                value: '5',
+                value: '30',
               },
             }
           ]

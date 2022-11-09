@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'myBusiness', loadChildren: () => import(`./Components/my-business/my-business.module`).then(m => m.MyBusinessModule), canActivate:[NoLoggedGuard]},
   { path: "allBusiness", component: AllBusinessComponent },
   { path: "home", component: MenuAccessComponent},
-  { path: "products", component: ProductsComponent },
+  { path: "products/:id", component: ProductsComponent },
   { path: "**", redirectTo: 'home'}
 ];
 

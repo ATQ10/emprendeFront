@@ -89,10 +89,17 @@ export class ProductsBusinessComponent implements OnInit {
       this.isVenta = true
     }else{
       if(type=='Preparación'){
+        let closeButton = this.toastr.toastrConfig.closeButton;
+        let disableTimeOut = this.toastr.toastrConfig.disableTimeOut;
+        let positionClass = this.toastr.toastrConfig.positionClass;
         this.toastr.toastrConfig.closeButton = true;
         this.toastr.toastrConfig.disableTimeOut = true;
         this.toastr.toastrConfig.positionClass = 'toast-center-center';
         this.toastr.warning("No olvides actualizar tu inventario con los articulos que utilizaste para preparar este producto");
+        
+        this.toastr.toastrConfig.closeButton = closeButton;
+        this.toastr.toastrConfig.disableTimeOut = disableTimeOut;
+        this.toastr.toastrConfig.positionClass = positionClass;
       }
       this.isVenta = false
     }
@@ -163,7 +170,7 @@ export class ProductsBusinessComponent implements OnInit {
       console.log(this.product)
       this.productService.updateProduct(this.product._id,this.product!).subscribe(response=>{
         //Create a Finance
-        if(this.productForm.controls.cantidad.value! > 0){
+        if(this.productForm.controls.total.value! > 0){
           console.log("New finance")
           let move = {
             descripcion: "",
@@ -173,22 +180,25 @@ export class ProductsBusinessComponent implements OnInit {
             fecha: new Date(Date.now()), 
             creado: new Date(Date.now())
           };
+          console.log("move",move)
           if(this.isVenta){
             move.descripcion = "Venta de ";
             move.tipo = "Venta";
+            this.toastr.success("Venta exitosa");
           }
           else{
             move.descripcion = "Compra de ";
             move.tipo = "Compra";
+            this.toastr.success("Compra exitosa");
           }
+          
           move.descripcion += this.productForm.controls.cantidad.value! + " " + this.productForm.controls.nombre.value!;
-        //  this.financeService.createMove(move).subscribe(financeResponse => {
-        //    console.log("Nueva finanza:", financeResponse);
-        //  });
+          this.financeService.createMove(move).subscribe(financeResponse => {
+            console.log("Nueva finanza:", financeResponse);
+          });
         }
         
         //console.log(response);
-        this.toastr.success("Actualización exitosa");
         this.ngOnInit();
         this.productForm.reset();
         this.url = "";

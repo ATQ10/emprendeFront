@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './Components/footer/footer.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ProductsComponent } from './Components/products/products.component';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProductsComponent } from './Components/products/products.component';
     BrowserAnimationsModule,
     FontAwesomeModule,
     NgxPayPalModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatTabsModule
     ],
   providers: [
     {

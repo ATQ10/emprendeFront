@@ -15,6 +15,10 @@ button:focus{
     margin: 0 auto;
 }
 
+.centrar{
+  text-align: center;
+}
+
 button {
   background: none;
   border: 2px solid;
@@ -23,8 +27,6 @@ button {
  /* margin: 0.5em;*/
   padding: .5em 2em;
   transition: 0.25s;
-  left: 40%;
-  position: relative;
 }
 
 .card-header{

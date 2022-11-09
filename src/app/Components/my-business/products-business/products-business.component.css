@@ -19,7 +19,6 @@
  /* margin: 0.5em;*/
   padding: .5em 2em;
   transition: 0.25s;
-  left: 40%;
   position: relative;
 }
 
@@ -31,8 +30,8 @@
   margin-top: 15px;
 }
 
-.linkAdd{
-  float: right;
+.derecha{
+  text-align: right;
 }
 
 .linkAdd{
@@ -43,7 +42,7 @@
   transform: scale(1.1);
 }
 
-.areaImg{
+.areaImg, .centrar{
   text-align: center;
 }
 .imagenProducto{
