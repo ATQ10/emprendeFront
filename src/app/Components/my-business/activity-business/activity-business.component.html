@@ -12,7 +12,7 @@
                   </a>
                 </h2>
               </div>
-              <div class="card-body py-5 px-md-5">
+              <div class="card-body">
                 <div class="row pt-1" *ngIf="this.activities.length>0">
                   <div class="col d-flex justify-content-center">
                       <div class="table-responsive">
@@ -20,24 +20,27 @@
                               <thead class="thead-dark">
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Estado</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('estado')"><fa-icon [icon]="faSortUp"></fa-icon>Estado</span></th>
                                       <th scope="col">Tarea</th>
-                                      <th scope="col">Inicio</th>
-                                      <th scope="col">Término</th>
-                                      <th scope="col">Editar</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('inicio')"><fa-icon [icon]="faSortUp"></fa-icon>Inicio</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('termino')"><fa-icon [icon]="faSortUp"></fa-icon>Término</span></th>
+                                      <th scope="col" colspan="2">Acciones</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr *ngFor="let act of this.activities; let i=index">
                                         <td>{{i+1}}</td>
                                         <td>{{act.estado}}</td>
-                                        <td>{{act.tarea}}</td>
-                                        <td>{{act.fechaInicio}}</td>
-                                        <td>${{act.fechaFinal}}</td>
+                                        <td>{{reduceText(act.tarea)}}</td>
+                                        <td>{{act.fechaInicio.toString().substring(0,10)}}</td>
+                                        <td>{{act.fechaFinal.toString().substring(0,10)}}</td>
                                         <td>
                                           <a class="linkAdd" (click)="openXl(content,act)">
                                             <fa-icon [icon]="faEdit"></fa-icon>
                                           </a>
+                                        </td>
+                                        <td>
+                                          <button class="btn btn-danger" (click)="delete(act)">Eliminar</button>
                                         </td>
                                   </tr>                                 
                               </tbody>

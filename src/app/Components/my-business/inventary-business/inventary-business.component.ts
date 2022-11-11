@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BusinessService } from 'src/service/business.service';
 import { ProductService } from 'src/service/product.service';
-import { faCirclePlus, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faEdit, faSortAlphaAsc, faSortAmountDesc, faSortNumericDesc } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/entity/product';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -25,6 +25,8 @@ export class InventaryBusinessComponent implements OnInit {
   idBusiness: string = "";
   faCirclePlus = faCirclePlus;
   faEdit = faEdit;
+  faSortAlphaAsc = faSortAlphaAsc;
+  faSortAmountAsc = faSortAmountDesc;
   products: Product[] = [];
   product: Product | any;
   percentDone: number = 0;
@@ -70,6 +72,7 @@ export class InventaryBusinessComponent implements OnInit {
           this.productService.getAll(this.idBusiness!).subscribe(products => {
             //console.log(products);
             this.products = products;
+            this.getAtributoSort("nombre");
             if(this.products.length == 0){
               this.toastr.warning("No tienes productos")
             }else{
@@ -152,5 +155,56 @@ export class InventaryBusinessComponent implements OnInit {
       fileName: file.name
     };
     this.productForm.controls.imagen.setValue(this.fileTmp);
+  }
+
+  reduceText(text: String): String{
+    if(text.length>70){
+      return text.substring(0,67) + "...";
+    }else{
+      return text;
+    }
+  }
+
+  getAtributoSort(atributo:String): any{
+    //Ordenamos pokemosn por ID
+    console.log(atributo);
+    switch(atributo){
+      case "nombre":
+            return this.products.sort((a, b)=> {
+              if(a.nombre < b.nombre) { return -1; }
+              if(a.nombre > b.nombre) { return 1; }
+              return 0;
+            });
+        break;
+      case "stock":
+            return this.products.sort((a, b)=> {
+              if(a.stock < b.stock) { return -1; }
+              if(a.stock > b.stock) { return 1; }
+              return 0;
+            });
+          break;
+      case "minStock":
+            return this.products.sort((a, b)=> {
+              if(a.minStock < b.minStock) { return -1; }
+              if(a.minStock > b.minStock) { return 1; }
+              return 0;
+            });
+          break;
+      case "precioCompra":
+        return this.products.sort((a, b)=> {
+          if(a.precioCompra < b.precioCompra) { return -1; }
+          if(a.precioCompra > b.precioCompra) { return 1; }
+          return 0;
+        });
+      break;
+      case "precioVenta":
+        return this.products.sort((a, b)=> {
+          if(a.precioVenta < b.precioVenta) { return -1; }
+          if(a.precioVenta > b.precioVenta) { return 1; }
+          return 0;
+        });
+      break;
+      default:
+    } 
   }
 }

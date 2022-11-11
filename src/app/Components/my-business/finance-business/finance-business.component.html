@@ -17,16 +17,16 @@
                               <thead class="thead-dark">
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Descripción</th>
-                                      <th scope="col">Monto</th>
-                                      <th scope="col">Fecha</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('descripcion')"><fa-icon [icon]="faSortAlphaAsc"></fa-icon>Descripción</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('monto')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Monto</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('fecha')"><fa-icon [icon]="faSortUp"></fa-icon>Fecha</span></th>
                                       <th scope="col">Acciones</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr *ngFor="let finance of this.finances; let i=index">
                                         <td >{{i+1}}</td>
-                                        <td >{{finance.descripcion}}</td>
+                                        <td >{{reduceText(finance.descripcion)}}</td>
                                         <td >${{finance.monto | number : '1.2'}} MXN</td>
                                         <td >{{finance.fecha.toString().substring(0,10)}}</td>
                                         <td>
@@ -53,9 +53,9 @@
                               <thead class="thead-dark">
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Descripción</th>
-                                      <th scope="col">Monto</th>
-                                      <th scope="col">Fecha</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('descripcion')"><fa-icon [icon]="faSortAlphaAsc"></fa-icon>Descripción</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('monto')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Monto</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('fecha')"><fa-icon [icon]="faSortUp"></fa-icon>Fecha</span></th>
                                       <th scope="col">Acciones</th>
                                   </tr>
                               </thead>
@@ -89,16 +89,16 @@
                               <thead class="thead-dark">
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Descripción</th>
-                                      <th scope="col">Monto</th>
-                                      <th scope="col">Fecha</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('descripcion')"><fa-icon [icon]="faSortAlphaAsc"></fa-icon>Descripción</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('monto')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Monto</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('fecha')"><fa-icon [icon]="faSortUp"></fa-icon>Fecha</span></th>
                                       <th scope="col">Acciones</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr *ngFor="let finance of this.finances; let i=index">
                                         <td *ngIf="finance.tipo == 'Compra'">{{i+1}}</td>
-                                        <td *ngIf="finance.tipo == 'Compra'">{{finance.descripcion}}</td>
+                                        <td *ngIf="finance.tipo == 'Compra'">{{reduceText(finance.descripcion)}}</td>
                                         <td *ngIf="finance.tipo == 'Compra'">${{finance.monto | number : '1.2'}} MXN</td>
                                         <td *ngIf="finance.tipo == 'Compra'">{{finance.fecha.toString().substring(0,10)}}</td>
                                         <td *ngIf="finance.tipo == 'Compra'">

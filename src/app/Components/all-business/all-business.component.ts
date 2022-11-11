@@ -28,7 +28,7 @@ export class AllBusinessComponent implements OnInit {
       this.products = products;
       console.log(this.products);
       if(this.products.length == 0){
-        this.toastr.warning("No tienes productos")
+        this.toastr.warning("No existen coincidencias")
       }else{
         
       }
@@ -44,11 +44,19 @@ export class AllBusinessComponent implements OnInit {
       this.products = products;
       console.log(this.products);
       if(this.products.length == 0){
-        this.toastr.warning("No tienes productos")
+        this.toastr.warning("No existen coincidencias")
       }else{
         
       }
     });
+  }
+
+  reduceText(text: String): String{
+    if(text.length>70){
+      return text.substring(0,67) + "...";
+    }else{
+      return text;
+    }
   }
 
 }

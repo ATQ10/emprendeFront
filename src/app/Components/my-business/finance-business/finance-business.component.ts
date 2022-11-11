@@ -5,6 +5,7 @@ import { BusinessService } from 'src/service/business.service';
 import { FinanceService } from 'src/service/finance.service';
 import { AuthService } from 'src/service/intercept/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { faCirclePlus, faEdit, faSortAlphaAsc, faSortAmountDesc, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-finance-business',
@@ -13,10 +14,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FinanceBusinessComponent implements OnInit {
   idBusiness: String = "";
-  finances: Move[] | undefined;
+  finances: Move[] = [];
   total = 0;
   egresos = 0;
   ingresos = 0; 
+  faCirclePlus = faCirclePlus;
+  faEdit = faEdit;
+  faSortAlphaAsc = faSortAlphaAsc;
+  faSortAmountAsc = faSortAmountDesc;
+  faSortUp = faSortUp;
   constructor(
     private businessService: BusinessService,
     private router: Router,
@@ -57,7 +63,46 @@ export class FinanceBusinessComponent implements OnInit {
   delete(move: Move){
     this.financeService.deleteMove(move._id).subscribe(response =>{
       this.ngOnInit();
+      this.toastr.success("Movimiento eliminado");
     })
+  }
+
+  reduceText(text: String): String{
+    if(text.length>70){
+      return text.substring(0,67) + "...";
+    }else{
+      return text;
+    }
+  }
+
+  getAtributoSort(atributo:String): any{
+    //Ordenamos pokemosn por ID
+    console.log(atributo);
+    switch(atributo){
+      case "descripcion":
+            return this.finances.sort((a, b)=> {
+              if(a.descripcion < b.descripcion) { return -1; }
+              if(a.descripcion > b.descripcion) { return 1; }
+              return 0;
+            });
+        break;
+      case "monto":
+            return this.finances.sort((a, b)=> {
+              if(a.monto < b.monto) { return -1; }
+              if(a.monto > b.monto) { return 1; }
+              return 0;
+            });
+          break;
+      case "fecha":
+            return this.finances.sort((a, b)=> {
+              if(a.fecha < b.fecha) { return -1; }
+              if(a.fecha > b.fecha) { return 1; }
+              return 0;
+            });
+          break;
+      break;
+      default:
+    } 
   }
 
 }

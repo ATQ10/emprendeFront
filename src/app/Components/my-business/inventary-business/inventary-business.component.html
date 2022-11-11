@@ -20,11 +20,11 @@
                               <thead class="thead-dark">
                                   <tr>
                                       <th scope="col">#</th>
-                                      <th scope="col">Nombre</th>
-                                      <th scope="col">Stock</th>
-                                      <th scope="col">Stock mínimo</th>
-                                      <th scope="col">Precio Compra</th>
-                                      <th scope="col">Precio venta</th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('nombre')"><fa-icon [icon]="faSortAlphaAsc"></fa-icon>Nombre</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('stock')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Stock</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('minStock')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Stock mínimo</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('precioCompra')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Precio Compra</span></th>
+                                      <th scope="col"><span class="encabezado" (click)="getAtributoSort('precioVenta')"><fa-icon [icon]="faSortAmountAsc"></fa-icon>Precio Venta</span></th>
                                       <th scope="col">Descripción</th>
                                       <th scope="col">Editar</th>
                                   </tr>
@@ -32,12 +32,12 @@
                               <tbody>
                                   <tr *ngFor="let prod of this.products; let i=index">
                                         <td>{{i+1}}</td>
-                                        <td>{{prod.nombre}}</td>
+                                        <td>{{reduceText(prod.nombre)}}</td>
                                         <td>{{prod.stock}}</td>
                                         <td>{{prod.minStock}}</td>
                                         <td>${{prod.precioCompra}}</td>
                                         <td>${{prod.precioVenta}}</td>
-                                        <td>{{prod.descripcion}}</td>
+                                        <td>{{reduceText(prod.descripcion)}}</td>
                                         <td>
                                           <a class="linkAdd" (click)="openXl(content,prod)">
                                             <fa-icon [icon]="faEdit"></fa-icon>

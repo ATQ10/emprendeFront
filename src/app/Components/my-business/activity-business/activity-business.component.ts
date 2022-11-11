@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { BusinessService } from 'src/service/business.service';
 import { AuthService } from 'src/service/intercept/auth.service';
 import { environment } from 'src/environments/environment';
-import { faCirclePlus, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faEdit, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { Activity } from 'src/entity/activity';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivityService } from 'src/service/activity.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-activity-business',
@@ -26,6 +27,7 @@ export class ActivityBusinessComponent implements OnInit {
   submitButton: string = "Guardar"
   faCirclePlus = faCirclePlus;
   faEdit = faEdit;
+  faSortUp = faSortUp;
   activities: Activity[] = [];
   activity: Activity | any;
   activityForm = new FormGroup({
@@ -41,25 +43,27 @@ export class ActivityBusinessComponent implements OnInit {
     private businessService: BusinessService,
     private router: Router,
     private auth:AuthService,
-    private activityService: ActivityService,
+    private activityService: ActivityService,    
+    private userService: UserService,
     private toastr: ToastrService,
     private modalService: NgbModal,
   ) {
   }
   ngOnInit(): void {    
     Promise.resolve().then(() => this.auth.locationMenu.next("activity")); 
-    /*
-    this.businessService.getByID("-1").subscribe(response=>{
-      if(response.message == "No tenemos este negocio"){
-        this.router.navigate(['myBusiness']);
-      }else{
-        this.idBusiness = response._id;
-        if(this.idBusiness!=""){
-          
-        }
-      }
+    
+    this.userService.getByID("-1").subscribe(response=>{
+      //console.log(response);
+      this.idUser = response._id;
+
+      this.activityService.getAll().subscribe(acts =>{
+        this.activities = acts;
+        this.getAtributoSort("estado");
+      })
+
+
     });
-    */
+
     
   }
 
@@ -72,8 +76,8 @@ export class ActivityBusinessComponent implements OnInit {
       this.activityForm.controls._id.setValue(activity._id);
       this.activityForm.controls.tarea.setValue(activity.tarea);
       this.activityForm.controls.idU.setValue(activity.idU);
-      this.activityForm.controls.fechaInicio.setValue(activity.fechaInicio);
-      this.activityForm.controls.fechaFinal.setValue(activity.fechaFinal);
+      this.activityForm.controls.fechaInicio.setValue(activity.fechaInicio.toString().substring(0,10));
+      this.activityForm.controls.fechaFinal.setValue(activity.fechaFinal.toString().substring(0,10));
       this.activityForm.controls.estado.setValue(activity.estado);
       this.activityForm.controls.creado.setValue(activity.creado);
       this.submitButton = "Actualizar";
@@ -101,6 +105,7 @@ export class ActivityBusinessComponent implements OnInit {
         });
       }else{
         this.activity.idN = this.idUser;
+        this.activity.creado = new Date(Date.now());
         this.activityService.createActivity(this.activity!).subscribe(response=>{
           console.log(response);
           this.toastr.success("Registro exitoso");
@@ -115,6 +120,51 @@ export class ActivityBusinessComponent implements OnInit {
     }else{
       this.toastr.error("Existen campos vacios")
     }
+  }
+
+  delete(act: Activity){
+    this.activityService.deleteActivity(act._id).subscribe(response =>{
+      this.ngOnInit();
+      this.toastr.success("Actividad eliminada");
+    })
+  }
+
+  reduceText(text: String): String{
+    if(text.length>70){
+      return text.substring(0,67) + "...";
+    }else{
+      return text;
+    }
+  }
+
+  getAtributoSort(atributo:String): any{
+    //Ordenamos pokemosn por ID
+    console.log(atributo);
+    switch(atributo){
+      case "estado":
+            return this.activities.sort((a, b)=> {
+              if(a.estado < b.estado) { return -1; }
+              if(a.estado > b.estado) { return 1; }
+              return 0;
+            });
+        break;
+      case "inicio":
+            return this.activities.sort((a, b)=> {
+              if(a.fechaInicio < b.fechaInicio) { return -1; }
+              if(a.fechaInicio > b.fechaInicio) { return 1; }
+              return 0;
+            });
+          break;
+      case "termino":
+            return this.activities.sort((a, b)=> {
+              if(a.fechaInicio < b.fechaInicio) { return -1; }
+              if(a.fechaInicio > b.fechaInicio) { return 1; }
+              return 0;
+            });
+          break;
+      break;
+      default:
+    } 
   }
 
 }
