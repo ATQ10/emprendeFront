@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ngxImageZoomContainer {
+    width: 90%!important;
+    height: auto !important;
+}
+
+.ngxImageZoomThumbnail{
+    max-width: 100% !important;
+}

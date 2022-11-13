@@ -30,11 +30,6 @@
     text-align: center;
 }
 
-img{
-    width: 90%;
-    border-radius: 10px;
-}
-
 .comentarios{
     height: auto;
 }
@@ -56,12 +51,12 @@ img{
   transform: translateY(-0.25em);
 }
 
-button:hover,
-button:focus{
+.button-submit:hover,
+.button-submit:focus{
     border-color: #0F1827   ;
 }
 
-button {
+.button-submit {
   background: none;
   border: 2px solid;
   font: inherit;
@@ -69,3 +64,38 @@ button {
   padding: .5em 2em;
   transition: 0.25s;
 }
+
+.centrar{
+    text-align: center;
+}
+
+.link{
+    font-weight: 600;
+    cursor: pointer;
+    color: #3FB1E5;
+
+}
+
+.areaImg{
+    text-align: center;
+  }
+.imagenBusiness{
+    max-height: 300px;
+    max-width: 100%;
+}
+/*
+.ngxImageZoomContainer {
+    width: 400px!important;
+    height: 400px !important;
+}
+#cuadro{
+    width: 400px !important;
+    height: 400px !important;
+}
+img .ngxImageZoomThumbnail{
+max-width: 100% !important;
+}
+.ngxImageZoomContainer {
+    height: 400px !important;
+     width: 400px !important;
+    }*/

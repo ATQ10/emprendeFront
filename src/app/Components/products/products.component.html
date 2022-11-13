@@ -4,28 +4,40 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header ch1">
-                    <p>{{this.product!.nombre}}</p>
+                    <p *ngIf="this.product">{{this.product!.nombre}}</p>
                 </div>
                 <div class="card-body py-1 px-md-1">
                     <div class="col justify-content">
                         <div class="row pt-1">
-                            <div class="desc">
+                            <div class="desc" *ngIf="this.product">
                                 {{this.product!.descripcion}}
                             </div>
                         </div>
                         
-                        <div class="row pt-1">
+                        <div class="row pt-1" *ngIf="this.product">
                             <i><p class="sede">Cantidad: {{this.product!.stock}}</p></i>
+                        </div>
+                        
+                        <div class="row pt-1" *ngIf="this.product">
+                            <i><p class="precio"> <b>Precio: ${{this.product!.precioVenta | number : '1.2'}} MXN</b> </p></i>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="modEmp">¿Deseas conocer más sobre <a (click)="modalEmp">empresaYams</a>?</p>
+            <p class="modEmp">¿Deseas conocer más sobre <a class="link" *ngIf="this.business" (click)="openXl(content)">{{this.business!.nombre}}</a>?</p>
         </div>
-        
 
-        <div class="col-6">
-            <img [src]="apiLink+this.product!.url">
+        <div class="col-6 centrar" *ngIf="this.product">
+         <!--   <img [src]="apiLink+this.product!.url">-->
+         <lib-ngx-image-zoom id="cuadro"
+         [thumbImage]="apiLink+this.product!.url"
+         [fullImage]="apiLink+this.product!.url"
+         [magnification]="2"
+         [enableScrollZoom]="true"
+         [enableLens]="true"
+         [lensWidth]="200"
+         [lensHeight]="200"
+         ></lib-ngx-image-zoom>
         </div>
     </div>
 
@@ -33,21 +45,102 @@
 
     <div class="m-0 row justify-content-center">
         <div class="col-8 text-center comentarios">
-            <button class="raise mb-2"><h6>Comentar</h6></button>
+            <button class="raise mb-2 button-submit" (click)="openXl(content2)"><h6>Realizar comentario</h6></button>
             <br><br>
-            <div class="card">
+            <div class="card mb-2" *ngFor="let comm of this.comments">
                 <div class="card-header" style="height: 2rem;">
-                    <p class="nomC">@nombreUsuario</p>
+                    <p class="nomC">{{comm.usuario.nombre + ' ' + comm.usuario.apellido}}</p>
                 </div>
                 <div class="card-body py-1 px-md-1">
-                    <p class="fecC">Fecha</p>
-                    <div>Comentario</div>
+                    <p class="fecC">Fecha: {{comm.fecha.toString().substring(0,10)}}</p>
+                    <div>Comentario:</div>
+                    <div><i>"{{comm.mensaje}}"</i></div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{this.titleModal}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="card">
+              <div class="card-header">
+                <h2> {{this.subTitleModal}} </h2>
+              </div>
+              <div class="card-body py-5 px-md-5">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="form3Example1"><B>Nombre</B></label>
+                        <input id="nombre" type="text" class="form-control" value="{{this.business!.nombre}}" readonly/>
+                    </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="form3Example2"><B>Inicio</B></label>
+                        <input id="inicioFecha" type="date" class="form-control" value="{{this.business!.inicioFecha.toString().substring(0,10)}}" readonly/>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3"><B>Sede</B></label>
+                    <input id="sede" type="text" class="form-control" value="{{this.business!.sede}}" readonly/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3"><B>Descripción</B></label>
+                    <textarea id="descripcion" type="text" class="form-control" value="{{this.business!.descripcion}}" readonly></textarea>
+                </div>  
+                <div>
+                    <div class="areaImg">
+                        <img class="imagenBusiness" *ngIf="this.business!.url" [src]="apiLink+this.business!.url">
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{this.product!.nombre}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="card">
+              <div class="card-header">
+                <h2> Realiza un comentario... </h2>
+              </div>
+              <form [formGroup]="commentForm" (submit)="OnSubmit()">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3">Escriba su comentario:</label>
+                  <textarea id="mensaje" type="text" formControlName="mensaje" class="form-control"></textarea>
+                </div>
+                <!-- Submit button -->
+              <div class="centrar">
+                <button type="submit" class="raise btn-block mb-4 button-submit">
+                  <h5>Comentar</h5>
+                </button>
+              </div>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+</ng-template>

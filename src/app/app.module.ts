@@ -21,6 +21,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ProductsComponent } from './Components/products/products.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     AllBusinessComponent,
     CarouselComponent,
     FooterComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     FontAwesomeModule,
     NgxPayPalModule,
     ToastrModule.forRoot(),
-    MatTabsModule
+    MatTabsModule,
+    NgxImageZoomModule 
     ],
   providers: [
     {
