@@ -12,6 +12,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/service/user.service';
 import { User } from 'src/entity/user';
+import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import { strings } from '@material/tabs/tab/constants';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +22,8 @@ import { User } from 'src/entity/user';
 })
 export class ProductsComponent implements OnInit {
   apiLink = environment.apiLink + "/public/"; 
+  message: string = ""
+  faDeleteLeft = faDeleteLeft;
   myThumbnail="{{apiLink+}}";
   myFullresImage="";
   idProducto: string = '';
@@ -31,6 +35,9 @@ export class ProductsComponent implements OnInit {
   comment: Comment | any;
   comments: any[] = [];
   users: User[] = [];
+  idUser: string = "";
+  userContact: User | undefined;
+  userOwner: User | undefined;
   commentForm = new FormGroup({
     idU: new FormControl(""),
     idP: new FormControl(""),
@@ -60,6 +67,10 @@ export class ProductsComponent implements OnInit {
       //console.log(this.product)
       this.businessService.getByID(this.product.idN).subscribe(business =>{
         this.business = business;
+        //user Owner
+        this.userService.getByID(this.business?.idU).subscribe(userOwner=>{
+          this.userOwner = userOwner;
+        });
         this.loadingComments();
       });
     })
@@ -80,18 +91,48 @@ export class ProductsComponent implements OnInit {
               }
             }
           }
-          
           this.comments = comments;
-          console.log(this.comments);
+          //console.log(this.comments);
+          //Conocer usuario logueado
+          this.userService.getByID("-1").subscribe(response=>{
+            //console.log(response);
+            if(response != undefined){
+              this.userContact = response;
+              this.idUser = response._id; 
+            }    
+      
+          });
         });
       }
     });
   }
 
   openXl(content: any) {
+    
+    this.commentForm.controls.mensaje.setValue("");
     this.modalService.open(content, { size: 'xl' });
       this.titleModal = "Información sobre "+this.business!.nombre;
       this.subTitleModal = this.business!.nombre;
+  }
+
+  openXlComment(content: any) {
+    if(this.userContact?.nombre != undefined){
+      this.message = "Estimad@ propietario de " + this.business?.nombre + ", es de mi interés ("+this.userContact?.nombre + " "+
+                    this.userContact?.apellido+") contactarle por este medio"+
+                    " para poder adquirir el producto que usted tiene publicado en la plataforma Emprenego, este producto es:"+
+                    " * "+this.product.nombre + " *";
+      this.commentForm.controls.mensaje.setValue(this.message);
+      this.modalService.open(content, { size: 'xl' });
+    }else{
+      this.toastr.error("Primero debes iniciar sesión");
+    }
+  }
+
+  moreInfo(content: any) {
+    this.modalService.dismissAll();
+    this.modalService.open(content, { size: 'xl' });
+      this.titleModal = "Información sobre propietario de "+this.business!.nombre;
+      this.subTitleModal = "Propietario: ";
   }
 
   OnSubmit(){
@@ -101,7 +142,7 @@ export class ProductsComponent implements OnInit {
       this.comment.fecha = new Date(Date.now());
       this.comment.creado = new Date(Date.now());
       this.commentService.createComment(this.comment!).subscribe(response=>{
-          console.log(response);
+          //console.log(response);
           if(response.message == "Comentario registrado"){
             this.toastr.success("Comentario publicado");
             this.ngOnInit();
@@ -116,4 +157,50 @@ export class ProductsComponent implements OnInit {
       this.toastr.error("Existen campos vacios")
     }
   }
+
+  OnSubmitEmail(){
+    this.comment! = this.commentForm!.value;
+    if(this.commentForm.valid){
+      this.comment.mensaje+="\n\nDATOS DE CONTACTO:\n";
+      this.comment.mensaje+=" * Nombre: "+this.userContact?.nombre +" "+this.userContact?.apellido+"\n";
+      this.comment.mensaje+=" * Email: "+this.userContact?.email+"\n";
+      if(this.userContact!.telefono!.toString()!="")
+        this.comment.mensaje+=" * Tel.: "+this.userContact?.telefono+"\n";
+      this.comment.idP = this.product._id;
+      this.comment.fecha = new Date(Date.now());
+      this.comment.creado = new Date(Date.now());
+      console.log(this.comment!,this.userOwner!.email)
+      this.commentService.sendEmail(this.comment!,this.userOwner!.email).subscribe(response=>{
+          //console.log(response);
+          if(response.message == "Mensaje enviado correctamente"){
+            let closeButton = this.toastr.toastrConfig.closeButton;
+            let disableTimeOut = this.toastr.toastrConfig.disableTimeOut;
+            let positionClass = this.toastr.toastrConfig.positionClass;
+            this.toastr.toastrConfig.closeButton = true;
+            this.toastr.toastrConfig.disableTimeOut = true;
+            this.toastr.toastrConfig.positionClass = 'toast-center-center';
+            this.toastr.success(response.message + "\n Revisa constantemente tu email, en breve el propietario se pondra en contacto contigo.");
+            this.toastr.toastrConfig.closeButton = closeButton;
+            this.toastr.toastrConfig.disableTimeOut = disableTimeOut;
+            this.toastr.toastrConfig.positionClass = positionClass;
+            this.ngOnInit();
+            this.commentForm.reset();
+            this.modalService.dismissAll();
+          }else{
+            this.toastr.error("Primero debes iniciar sesión");
+          }
+          
+        });
+    }else{
+      this.toastr.error("Existen campos vacios")
+    }
+  }
+
+  delete(idComment: string):void{
+    this.commentService.deleteComment(idComment).subscribe(response=>{
+      this.toastr.success("Comentario eliminado");
+      this.loadingComments();
+    });
+  }
+
 }

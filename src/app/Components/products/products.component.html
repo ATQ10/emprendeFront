@@ -45,11 +45,18 @@
 
     <div class="m-0 row justify-content-center">
         <div class="col-8 text-center comentarios">
-            <button class="raise mb-2 button-submit" (click)="openXl(content2)"><h6>Realizar comentario</h6></button>
-            <br><br>
+          <button class="raise mb-2 button-submit" (click)="openXlComment(content3)"><h6>¡Deseo este artículo!</h6></button>
+          <button class="raise mb-2 button-submit" (click)="openXl(content2)"><h6>Realizar comentario</h6></button>
+          <br><br>
             <div class="card mb-2" *ngFor="let comm of this.comments">
                 <div class="card-header" style="height: 2rem;">
-                    <p class="nomC">{{comm.usuario.nombre + ' ' + comm.usuario.apellido}}</p>
+                    <p class="nomC">{{comm.usuario.nombre + ' ' + comm.usuario.apellido}} 
+                      <a (click)="delete(comm._id)" class="deleteComment" *ngIf="this.idUser == comm.usuario._id">
+                        <abbr title="Eliminar mi comentario">
+                          <fa-icon [icon]="faDeleteLeft"></fa-icon>
+                        </abbr>
+                      </a>
+                    </p>
                 </div>
                 <div class="card-body py-1 px-md-1">
                     <p class="fecC">Fecha: {{comm.fecha.toString().substring(0,10)}}</p>
@@ -143,4 +150,91 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
     </div>
+</ng-template>
+
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">En breve te pondremos en contacto con el propietario</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+          <div class="card">
+            <div class="card-header">
+              <h2>Este mensaje será enviado al correo del propietario</h2>
+            </div>
+            <form [formGroup]="commentForm" (submit)="OnSubmitEmail()">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Mensaje generado automaticamente, puede editarlo:</label>
+                <textarea id="mensaje" type="text" formControlName="mensaje" class="form-control"></textarea>
+              </div>
+              <!-- Submit button -->
+            <div class="centrar">
+              <button type="submit" class="raise btn-block mb-4 button-submit">
+                <h5>Enviar</h5>
+              </button>
+            </div>
+            </form>
+            <p class="masInfo"><span (click)="moreInfo(content4)">*Prefiero ver la información de contacto*</span></p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
+
+<ng-template #content4 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{this.titleModal}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="card">
+              <div class="card-header">
+                <h2> {{this.subTitleModal}} </h2>
+              </div>
+              <div class="card-body py-5 px-md-5">
+                <form>
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1">Nombre</label>
+                        <input id="nombre" type="text" class="form-control" value="{{this.userOwner!.nombre}}" readonly/>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example2">Apellido</label>
+                        <input id="apellido" type="text" class="form-control" value="{{this.userOwner!.apellido}}" readonly/>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Email</label>
+                    <input id="email" type="text" class="form-control" value="{{this.userOwner!.email}}" readonly/>
+                  </div>  
+
+                  <!-- Tel input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Teléfono</label>
+                    <input id="telefono" type="text" class="form-control" value="{{this.userOwner!.telefono}}" readonly/>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
 </ng-template>

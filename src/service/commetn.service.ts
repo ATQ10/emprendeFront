@@ -27,6 +27,10 @@ export class CommetnService {
       return this.httpClient.post<Comment>(`${this.apiLink}/api/comentario/create`, Comment);
     }
 
+    sendEmail(Comment: any, email: string): Observable<any> {
+      return this.httpClient.post<Comment>(`${this.apiLink}/api/comentario/sendEmail/${encodeURIComponent(email)}`, Comment);
+    }
+
     updateComment(idComment: string, Comment: Comment): Observable<Comment> {
       return this.httpClient.put<Comment>(`${this.apiLink}/api/comentario/${encodeURIComponent(idComment)}`, Comment);
     }
