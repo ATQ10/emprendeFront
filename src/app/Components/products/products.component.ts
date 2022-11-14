@@ -54,6 +54,7 @@ export class ProductsComponent implements OnInit {
     private modalService: NgbModal,
     private toastr: ToastrService
     ) {
+      this.ngOnInit()
     }
 
   async ngOnInit(): Promise<void> {
@@ -74,6 +75,15 @@ export class ProductsComponent implements OnInit {
         this.loadingComments();
       });
     })
+    
+    this.userService.getByID("-1").subscribe(response=>{
+      //console.log(response);
+      if(response != undefined){
+        this.userContact = response;
+        this.idUser = response._id; 
+      }    
+
+    });
   }
 
   loadingComments(){
@@ -94,14 +104,6 @@ export class ProductsComponent implements OnInit {
           this.comments = comments;
           //console.log(this.comments);
           //Conocer usuario logueado
-          this.userService.getByID("-1").subscribe(response=>{
-            //console.log(response);
-            if(response != undefined){
-              this.userContact = response;
-              this.idUser = response._id; 
-            }    
-      
-          });
         });
       }
     });
@@ -116,6 +118,7 @@ export class ProductsComponent implements OnInit {
   }
 
   openXlComment(content: any) {
+    //console.log(this.userContact)
     if(this.userContact?.nombre != undefined){
       this.message = "Estimad@ propietario de " + this.business?.nombre + ", es de mi interés ("+this.userContact?.nombre + " "+
                     this.userContact?.apellido+") contactarle por este medio"+
@@ -169,7 +172,7 @@ export class ProductsComponent implements OnInit {
       this.comment.idP = this.product._id;
       this.comment.fecha = new Date(Date.now());
       this.comment.creado = new Date(Date.now());
-      console.log(this.comment!,this.userOwner!.email)
+      //console.log(this.comment!,this.userOwner!.email)
       this.commentService.sendEmail(this.comment!,this.userOwner!.email).subscribe(response=>{
           //console.log(response);
           if(response.message == "Mensaje enviado correctamente"){

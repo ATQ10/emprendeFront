@@ -199,7 +199,15 @@ export class ProductsBusinessComponent implements OnInit {
           this.financeService.createMove(move).subscribe(financeResponse => {
             console.log("Nueva finanza:", financeResponse);
           });
+        }else{
+          if(this.isVenta){
+            this.toastr.success("Utilización exitosa");
+          }
+          else{
+            this.toastr.success("Preparación exitosa");
+          }
         }
+
         
         //console.log(response);
         this.ngOnInit();
