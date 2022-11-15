@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/service/user.service';
 import { User } from 'src/entity/user';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
-import { strings } from '@material/tabs/tab/constants';
 
 @Component({
   selector: 'app-products',
