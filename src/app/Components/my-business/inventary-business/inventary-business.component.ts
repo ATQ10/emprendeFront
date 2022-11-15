@@ -38,7 +38,7 @@ export class InventaryBusinessComponent implements OnInit {
     precioVenta: new FormControl("",[Validators.required]),
     stock: new FormControl("",[Validators.required]),
     minStock: new FormControl("",[Validators.required]),
-    detalles: new FormControl("",[Validators.required]),
+    detalles: new FormControl(""),
     idN: new FormControl("",[Validators.required]),
     _id: new FormControl(""),
     url: new FormControl(""),
@@ -143,7 +143,7 @@ export class InventaryBusinessComponent implements OnInit {
         });
       }
     }else{
-      this.toastr.error("Existen campos vacios")
+      this.toastr.error("Existen campos vacios o se detectaron números negativos")
     }
   }
 
