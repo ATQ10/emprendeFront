@@ -93,6 +93,12 @@ export class ActivityBusinessComponent implements OnInit {
   OnSubmit(){
     this.activity! = this.activityForm.value!;
     if(this.activityForm.valid){
+      let inicio = Date.parse(this.activity.fechaInicio);
+      let final = Date.parse(this.activity.fechaFinal);
+      if(inicio>final){
+        this.toastr.warning("La fecha final no puede ser anterior a la fecha inicial");
+        return;
+      }
       if(this.submitButton != "Guardar"){
         this.activity.idU = this.idUser;
         this.activityService.updateActivity(this.activity._id,this.activity!).subscribe(response=>{
