@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./register-business.component.css']
 })
 export class RegisterBusinessComponent implements OnInit {
+  changeImagen = true;
   apiLink = environment.apiLink + "/public/"; 
   fileTmp: any;
   url: string = "";
@@ -46,8 +47,10 @@ constructor(
       //console.log(response);
       if(response.message == "No tenemos este negocio"){
         this.toastr.warning("Registra un negocio")
+        this.changeImagen = true;
       }else{
         this.submitButton = "Actualizar";
+        this.changeImagen = false;
         this.businessForm.controls._id.setValue(response._id);
         this.businessForm.controls.idU.setValue(response.idU);
         this.businessForm.controls.nombre.setValue(response.nombre);

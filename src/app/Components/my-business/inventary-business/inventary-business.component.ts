@@ -34,8 +34,8 @@ export class InventaryBusinessComponent implements OnInit {
   productForm = new FormGroup({
     nombre: new FormControl("", [ Validators.required]),
     descripcion: new FormControl("",[ Validators.required]),
-    precioCompra: new FormControl("",[Validators.required]),
-    precioVenta: new FormControl("",[Validators.required]),
+    precioCompra: new FormControl("0"),
+    precioVenta: new FormControl("0"),
     stock: new FormControl("",[Validators.required]),
     minStock: new FormControl("",[Validators.required]),
     detalles: new FormControl(""),
@@ -105,6 +105,9 @@ export class InventaryBusinessComponent implements OnInit {
       this.productForm.controls.activo.setValue(prod.activo);
       this.submitButton = "Actualizar";
     }else{
+      
+      this.productForm.controls.precioCompra.setValue("0");
+      this.productForm.controls.precioVenta.setValue("0");
       this.titleModal = "Agregar un nuevo producto...";
       this.subTitleModal = "Alta de producto";
       this.productForm.controls.idN.setValue(this.idBusiness);
@@ -113,6 +116,7 @@ export class InventaryBusinessComponent implements OnInit {
   }
   OnSubmit(){
     this.product! = this.productForm.value!;
+    console.log("this.productForm.controls.stock",this.productForm.controls.stock)
     if(this.productForm.valid){
       if(this.submitButton != "Registrar"){
         this.product.idN = this.idBusiness;

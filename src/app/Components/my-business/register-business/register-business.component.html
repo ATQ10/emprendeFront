@@ -38,12 +38,15 @@
                       <img class="imagenBusiness" *ngIf="this.url" [src]="apiLink+this.url">
                     </div>
                   </div>
-                  <div class="form-outline mb-4">
+                  <div *ngIf="!this.changeImagen" class="centrar mt-3 change" (click)="this.changeImagen = true">
+                    <span>¡Deseo cambiar mi imagen!</span>
+                  </div>
+                  <div class="form-outline mb-4" *ngIf="this.changeImagen">
                     <label class="form-label" for="form3Example3">Logotipo</label>
                     <input id="imagen" accept=".jpg,.png,.jpeg" type="file" (change)="getFile($event)" class="form-control"/>
                   </div>
                   <!-- Submit button -->
-                  <div class="centrar">
+                  <div class="centrar mt-3">
                     <button type="submit" class="raise btn-block mb-4">
                       <h5>{{this.submitButton}}</h5>
                     </button>
