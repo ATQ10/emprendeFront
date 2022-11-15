@@ -115,7 +115,14 @@ export class InventaryBusinessComponent implements OnInit {
     }
   }
   OnSubmit(){
+    console.log("this.productForm.value",this.productForm.value);
     this.product! = this.productForm.value!;
+    if(this.productForm.value.precioCompra == null){
+      this.product.precioCompra = 0;
+    }
+    if(this.productForm.value.precioVenta == null){
+      this.product.precioVenta = 0;
+    }
     console.log("this.productForm.controls.stock",this.productForm.controls.stock)
     if(this.productForm.valid){
       if(this.submitButton != "Registrar"){
