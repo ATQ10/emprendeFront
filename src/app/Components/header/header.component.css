@@ -59,3 +59,11 @@
         margin-right: 30px;
     }
 }
+/*
+@media screen and (min-width:480px)
+{
+    nav.navbar.navbar-expand-lg.navbar-expand-md.navbar-expand-sm.navbar-dark.mb-0{
+        width:380px;
+    }
+       
+} */

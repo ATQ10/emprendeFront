@@ -22,6 +22,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { ProductsComponent } from './Components/products/products.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { CarouselProductsComponent } from './Components/carousel-products/carousel-products.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
     CarouselComponent,
     FooterComponent,
     ProductsComponent,
+    CarouselProductsComponent,
   ],
   imports: [
     BrowserModule,

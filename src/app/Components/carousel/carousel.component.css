@@ -50,3 +50,10 @@ img{
         top: 30% !important;
       }
 }
+/*
+@media screen and (max-width:480px){
+    .btn_otrosnegocios{
+        width: 55%;
+        top: 30%;
+    }
+}*/

@@ -71,7 +71,7 @@ h1{
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 5rem;
-  background: linear-gradient(to bottom,white,#3FB1E5 );
+  background: linear-gradient(to bottom,white,#3FB1E5,white );
 }
 
 .card-pic {
@@ -321,5 +321,43 @@ text-decoration: none;
 
 .logo_wa{
   margin-left: 11%;
+}
+}
+
+@media  screen and (max-width: 482px){
+  .carousel-inner{
+    width: 79% !important;
+    /*display: block !important;*/
+}
+
+.presentacion1{
+    width: 380px;
+}
+.carousel-control-next{
+    left:300px;
+}
+.carousel-indicators{
+    margin-left: 0px;
+margin-right: 0px;
+width: 380px;
+}
+.textoquienes_somos{
+  margin-left: 33px;
+  margin-right: 124px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  font-size: 28px !important;
+}
+.dividir_columnas{
+  column-count: 1;
+}
+#pics{
+  width: 133% !important;
+  transform: translate(-121px, 0px);
+  margin-right: 0px;
+}
+.titulo_nuestroequipo{
+  font-size: 73px;
+  margin-bottom: 3px;
 }
 }
