@@ -1,5 +1,5 @@
 <div class="fondo">
-    <form class="searchForm" [formGroup]="searchForm" (submit)="OnSubmit()">
+    <form class="searchForm" [formGroup]="searchForm" (submit)="OnSubmit()" *ngIf="!this.byIdBusiness">
         <div class="row">
             <div class="form-outline">
               <label class="form-label" for="form3Example1">¿Qué estas buscando?</label>
@@ -8,6 +8,11 @@
             </div>
         </div>
     </form>
+    <div class="row" *ngIf="this.byIdBusiness">
+        <div class="m-3">
+            <span class="titulo" *ngIf="business">Productos de la empresa: {{business.nombre}}</span>
+        </div>
+    </div>
     <div class="row resultados">
         <div class="col-lg-4 col-md-5 col-sm-6" *ngFor="let prod of this.products">
             <div class="card">

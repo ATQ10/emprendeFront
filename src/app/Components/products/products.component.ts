@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/entity/product';
 import { Comment } from 'src/entity/comment';
 import { ProductService } from 'src/service/product.service';
@@ -51,7 +51,8 @@ export class ProductsComponent implements OnInit {
     private commentService: CommetnService,
     private userService: UserService,
     private modalService: NgbModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
     ) {
       this.ngOnInit()
     }
@@ -203,6 +204,12 @@ export class ProductsComponent implements OnInit {
       this.toastr.success("Comentario eliminado");
       this.loadingComments();
     });
+  }
+
+  otrosProductos(){
+    //this.toastr.success(this.business?._id)
+    this.router.navigate(['/allBusiness/'+this.business?._id]);
+    this.modalService.dismissAll();
   }
 
 }

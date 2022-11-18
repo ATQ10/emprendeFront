@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: "myPerfil", component: MyPerfilComponent },
   { path: 'myBusiness', loadChildren: () => import(`./Components/my-business/my-business.module`).then(m => m.MyBusinessModule), canActivate:[NoLoggedGuard]},
   { path: "allBusiness", component: AllBusinessComponent },
+  { path: "allBusiness/:id", component: AllBusinessComponent },
   { path: "home", component: MenuAccessComponent},
   { path: "products/:id", component: ProductsComponent },
   { path: "**", redirectTo: 'home'}

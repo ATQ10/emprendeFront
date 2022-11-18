@@ -92,6 +92,10 @@
     cursor: pointer;
     color: #e53f3f;
 }
+
+.otrosProductos{
+    cursor: pointer;
+}
 /*
 .ngxImageZoomContainer {
     width: 400px!important;
