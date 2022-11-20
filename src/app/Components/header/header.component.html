@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-dark mb-0">
+<nav class="navbar navbar-expand-lg navbar-dark mb-0" style="padding-right: 10px;">
     <a class="navbar-brand" [routerLink]="'.'"><img src="../../assets/img/emprenego.png" height="90px"></a>
   
     <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
@@ -21,6 +21,25 @@
         <li class="nav-item" *ngIf="this.authService.isLogged.getValue()">
           <a class="nav-link" [routerLink]="'./'" (click)="logOut()">LogOut</a>
         </li>
+
+        <!--Menus de accesado-->
+        <li class="nav-item d-lg-none d-block" *ngIf="this.authService.isLogged.getValue()">
+          <a class="nav-link" [routerLink]="'./myBusiness/register'" (click)="isMenuCollapsed = true">Mi negocio</a>
+        </li>
+        <li class="nav-item d-lg-none d-block" *ngIf="this.authService.isLogged.getValue()">
+          <a class="nav-link" [routerLink]="'./myBusiness/inventary'" (click)="isMenuCollapsed = true">Mi inventario</a>
+        </li>
+        <li class="nav-item d-lg-none d-block" *ngIf="this.authService.isLogged.getValue()">
+          <a class="nav-link" [routerLink]="'./myBusiness/finance'" (click)="isMenuCollapsed = true">Mis finanzas</a>
+        </li>
+        <li class="nav-item d-lg-none d-block" *ngIf="this.authService.isLogged.getValue()">
+          <a class="nav-link" [routerLink]="'./myBusiness/products'" (click)="isMenuCollapsed = true">Admin. mis productos</a>
+        </li>
+        <li class="nav-item d-lg-none d-block" *ngIf="this.authService.isLogged.getValue()">
+          <a class="nav-link" [routerLink]="'./myBusiness/premium'" (click)="isMenuCollapsed = true">Premium</a>
+        </li>
+        <!--Menus de accesado-->
+
         <!--<li class="nav-item" *ngIf='!active()'>
           <a class="nav-link" [routerLink]="'./login'" routerLinkActive="active-link" (click)="isMenuCollapsed = true">Login</a>
         </li>
