@@ -41,8 +41,8 @@ export class ProductsComponent implements OnInit {
   userContact: User | undefined;
   userOwner: User | undefined;
   editComment = false;
+  idCommentEdit = "";
   commentForm = new FormGroup({
-    _id: new FormControl(""),
     idU: new FormControl(""),
     idP: new FormControl(""),
     mensaje: new FormControl("",[ Validators.required]),
@@ -158,6 +158,7 @@ export class ProductsComponent implements OnInit {
     this.comment! = this.commentForm!.value;
     if(this.commentForm.valid){
       if(this.editComment){
+        this.comment._id = this.idCommentEdit;
         this.commentService.updateComment(this.comment._id,this.comment).subscribe(response=>{
           if(response != undefined){
             this.toastr.success("Comentario editado");
@@ -242,7 +243,7 @@ export class ProductsComponent implements OnInit {
   }
 
   edit(comment: Comment, content: any){
-    this.commentForm.controls._id.setValue(comment._id);
+    this.idCommentEdit = comment._id;
     this.editComment = true;
     this.commentForm.controls.creado.setValue(comment.creado.toString());
     this.commentForm.controls.fecha.setValue(comment.fecha.toString());
@@ -250,7 +251,6 @@ export class ProductsComponent implements OnInit {
     this.commentForm.controls.idP.setValue(comment.idP);
     this.commentForm.controls.idU.setValue(comment.idU);
     this.modalService.open(content, { size: 'xl' });
-
   }
 
 }

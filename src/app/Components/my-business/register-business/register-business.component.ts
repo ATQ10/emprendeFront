@@ -93,4 +93,17 @@ constructor(
     };
     this.businessForm.controls.imagen.setValue(this.fileTmp);
   }
+
+  deleteBusiness(){
+    this.businessService.deleteBusiness(this.idBusiness).subscribe((response:any)=>{
+      console.log(response);
+      if(response['message'] != 'Negocio eliminado'){
+        this.toastr.warning(response['message']);
+      }else{
+        this.toastr.success(response['message']);
+        this.businessForm.reset();
+        this.url = "";
+      }
+    })
+  }
 }

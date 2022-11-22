@@ -9,7 +9,7 @@
                 <h2> Mi negocio </h2>
               </div>
               <div class="card-body py-5 px-md-5">
-                <form [formGroup]="businessForm" (submit)="OnSubmit()">
+                <form [formGroup]="businessForm">
                   <!-- 2 column grid layout with text inputs for the first and last names -->
                   <div class="row">
                     <div class="col-md-6 mb-4">
@@ -47,8 +47,11 @@
                   </div>
                   <!-- Submit button -->
                   <div class="centrar mt-3">
-                    <button type="submit" class="raise btn-block mb-4">
+                    <button (click)="OnSubmit()" class="raise btn-block mb-4">
                       <h5>{{this.submitButton}}</h5>
+                    </button>
+                    <button *ngIf="this.submitButton=='Actualizar'" (click)="deleteBusiness()" class="delete btn-block mb-4">
+                      <h5>Eliminar</h5>
                     </button>
                   </div>
 

@@ -5,6 +5,13 @@
   
 }
 
+.delete:hover,
+.delete:focus {
+  box-shadow: 0 .9em .9em  #e5603f;
+ transform: translateY(-0.25em);
+  
+}
+
 button:hover,
 button:focus{
     border-color: #0F1827;
