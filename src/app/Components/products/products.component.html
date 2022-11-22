@@ -46,7 +46,9 @@
     <div class="m-0 row justify-content-center">
         <div class="col-8 text-center comentarios">
           <button class="raise mb-2 button-submit" (click)="openXlComment(content3)"><h6>¡Deseo este artículo!</h6></button>
-          <button class="raise mb-2 button-submit" (click)="openXl(content2)"><h6>Realizar comentario</h6></button>
+          <button class="raise mb-2 button-submit" (click)="openXl(content2)">
+            <h6>Realizar comentario</h6>
+          </button>
           <br><br>
             <div class="card mb-2" *ngFor="let comm of this.comments">
                 <div class="card-header" style="height: 2rem;">
@@ -54,6 +56,11 @@
                       <a (click)="delete(comm._id)" class="deleteComment" *ngIf="this.idUser == comm.usuario._id">
                         <abbr title="Eliminar mi comentario">
                           <fa-icon [icon]="faDeleteLeft"></fa-icon>
+                        </abbr>
+                      </a>
+                      <a (click)="edit(comm,content2)" class="editComment" *ngIf="this.idUser == comm.usuario._id">
+                        <abbr title="Editar mi comentario">
+                          <fa-icon [icon]="faEdit"></fa-icon>
                         </abbr>
                       </a>
                     </p>
@@ -133,7 +140,8 @@
         <div class="row gx-lg-5 align-items-center">
             <div class="card">
               <div class="card-header">
-                <h2> Realiza un comentario... </h2>
+                <h2 *ngIf="!this.editComment"> Realiza un comentario... </h2>
+                <h2 *ngIf="this.editComment"> Editar un comentario... </h2>
               </div>
               <form [formGroup]="commentForm" (submit)="OnSubmit()">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -144,7 +152,8 @@
                 <!-- Submit button -->
               <div class="centrar">
                 <button type="submit" class="raise btn-block mb-4 button-submit">
-                  <h5>Comentar</h5>
+                  <h5 *ngIf="!this.editComment">Comentar</h5>
+                  <h5 *ngIf="this.editComment">Editar</h5>
                 </button>
               </div>
               </form>

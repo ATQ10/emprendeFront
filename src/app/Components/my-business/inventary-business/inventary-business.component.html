@@ -139,6 +139,9 @@
                     <h5>{{this.submitButton}}</h5>
                   </button>
                 </div>
+                <div style="text-align: right;" *ngIf="this.submitButton=='Actualizar'">
+                  <span style="color: rgb(253, 108, 51); cursor: pointer;" (click)="deleteProduct()"> ¡Deseo eliminar este producto! </span>
+                </div>
                 </form>
               </div>
             </div>

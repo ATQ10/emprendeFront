@@ -88,9 +88,19 @@
     max-width: 100%;
 }
 
+abbr{
+    cursor: pointer;
+}
+
 .deleteComment{
     cursor: pointer;
     color: #e53f3f;
+}
+
+.editComment{
+    margin-left: 30px;
+    cursor: pointer;
+    color: #e5df3f;
 }
 
 .otrosProductos{

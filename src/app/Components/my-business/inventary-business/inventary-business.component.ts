@@ -218,4 +218,15 @@ export class InventaryBusinessComponent implements OnInit {
       default:
     } 
   }
+
+  deleteProduct(){
+    this.product! = this.productForm.value!;
+    //this.toastr.success(this.product._id);
+    this.productService.deleteProduct(this.product._id).subscribe(response =>{
+      console.log(response);
+      this.toastr.success("Producto eliminado");
+      this.modalService.dismissAll();
+      this.ngOnInit();
+    })
+  }
 }
