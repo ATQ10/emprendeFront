@@ -5,5 +5,6 @@ export interface User {
     nombre: string,
     apellido: string,
     telefono: string | null,
+    premium: boolean,
     creado: Date
 }

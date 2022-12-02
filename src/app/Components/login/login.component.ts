@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/service/intercept/auth.service';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-login',

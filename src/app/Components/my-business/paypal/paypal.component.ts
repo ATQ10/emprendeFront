@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { SuscriptionService } from 'src/service/suscription.service';
+import { SuscriptionE } from 'src/entity/suscription';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/service/intercept/auth.service';
 
 @Component({
   selector: 'app-paypal',
@@ -9,6 +14,13 @@ import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 export class PaypalComponent implements OnInit {
   showSuccess = false;
   public payPalConfig?: IPayPalConfig;
+  suscription: SuscriptionE | any;
+  constructor(
+    private suscriptionService: SuscriptionService,
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {
+  }
 
   ngOnInit(): void {
     this.initConfig();
@@ -17,7 +29,7 @@ export class PaypalComponent implements OnInit {
   private initConfig(): void {
     this.payPalConfig = {
     currency: 'MXN',
-    clientId: 'sb',
+    clientId: 'ARintG1D9oGDhj9sV1iAyf2YOQTUMAnhffrnJUYE0FEI1DCwNPX8xWESBSYertOEL3GwK-o3s6C24VfX',
     createOrderOnClient: (data) => <ICreateOrderRequest>{
       intent: 'CAPTURE',
       purchase_units: [
@@ -57,6 +69,20 @@ export class PaypalComponent implements OnInit {
       console.log('onApprove - transaction was approved, but not authorized', data, actions);
       actions.order.get().then((details: any) => {
         console.log('onApprove - you can get full order details inside onApprove: ', details);
+      });
+      this.suscription ={
+        "idU": "",
+        "fechaInicio": "",
+        "fechaFinal": "",
+        "creado": ""
+      };
+      this.suscriptionService.createSuscriptionE(this.suscription).subscribe(response =>{
+        console.table(response);
+        if(response.message == "Suscripcion registrada"){
+          this.toastr.success(response.message);
+          this.authService.isPremium.next(true);
+        }
+
       });
     },
     onClientAuthorization: (data) => {

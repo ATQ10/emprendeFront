@@ -6,10 +6,23 @@
         <div class="row gx-lg-5 align-items-center">
             <div class="card">
               <div class="card-header">
-                <h2> Premium </h2>
+                <h2> Premium 
+                  <a class="linkAdd" (click)="openXl(content)">
+                    <fa-icon [icon]="faInfoCircle"></fa-icon>
+                  </a>
+                </h2>
               </div>
               <div class="card-body py-5 px-md-5">
-                <app-paypal></app-paypal>
+                <app-paypal *ngIf="!this.auth.isPremium.getValue()"></app-paypal>
+                <div *ngIf="this.auth.isPremium.getValue()">
+                  <span class="titular">
+                    ¡Ya eres premium!
+                  </span>
+                  <br>
+                  <span class="textual">
+                    Ahora puedes disfrutar tus beneficios de activar productos de manera ilimitada
+                  </span>
+                </div>
               </div>
             </div>
         </div>
@@ -18,3 +31,46 @@
     <!-- Jumbotron -->
   </section>
   <!-- Section: Design Block -->
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Historial de suscripciones</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+            <div class="card">
+              <div class="card-header">
+                <h2> Cuentas con {{this.suscriptions.length}} suscripciones </h2>
+              </div>
+              <div class="card-body py-5 px-md-5">
+                <div class="col d-flex justify-content-center">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead class="thead-dark">
+                              <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col"><span class="encabezado">Fecha de Inicio</span></th>
+                                  <th scope="col"><span class="encabezado">Fecha de término</span></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let subs of this.suscriptions; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{subs.fechaInicio.toString().substring(0,10)}}</td>
+                                    <td>{{subs.fechaFinal.toString().substring(0,10)}}</td>
+                              </tr>                                 
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>

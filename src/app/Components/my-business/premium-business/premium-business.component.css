@@ -5,13 +5,13 @@
   
 }
 
-button:hover,
-button:focus{
+.button-submit:hover,
+.button-submit:focus{
     border-color: #0F1827;
     margin: 0 auto;
 }
 
-button {
+.button-submit {
   background: none;
   border: 2px solid;
   font: inherit;
@@ -29,4 +29,26 @@ button {
   text-align: center;
   width: 100%;
   margin-top: 15px;
+}
+
+.linkAdd{
+  float: right;
+}
+
+.linkAdd{
+  color: black;
+  cursor: pointer;
+}
+.linkAdd:hover{
+  transform: scale(1.1);
+}
+
+.titular{
+  font-weight: 700;
+  font-size: large;
+}
+
+.textual{
+  font-weight: 400;
+  font-size: medium;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/service/intercept/auth.service';
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: 'app-menu-access',
@@ -9,10 +10,16 @@ import { AuthService } from 'src/service/intercept/auth.service';
 export class MenuAccessComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    if(this.authService.isLogged.getValue()){
+      this.userService.getByID("-1").subscribe(user=>{
+        this.authService.iAmPremium(user.premium);
+      });
+    }
   }
 
 }

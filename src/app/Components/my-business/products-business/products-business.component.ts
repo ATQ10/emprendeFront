@@ -223,12 +223,16 @@ export class ProductsBusinessComponent implements OnInit {
 
   setActivo(prod: Product){
     console.log(prod);
-    this.productService.updateProduct(prod._id,prod).subscribe(response=>{
+    this.productService.updateProduct(prod._id,prod).subscribe((response:any)=>{
       //console.log(response);
-      if(prod.activo)
-        this.toastr.success("Producto habilitado");
-      else
-        this.toastr.warning("Producto inhabilitado");
+      if(response.message == "Haz excedido el límite gratuito"){
+        this.toastr.warning(response.message);
+      }else{
+        if(prod.activo)
+          this.toastr.success("Producto habilitado");
+        else
+          this.toastr.warning("Producto inhabilitado");
+      }
       this.ngOnInit();
       this.productForm.reset();
       this.url = "";

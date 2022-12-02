@@ -12,6 +12,7 @@ import { ErrorService } from './error.service';
 export class AuthService {
   apiLink = environment.apiLink;
   isLogged = new BehaviorSubject(false);  
+  isPremium = new BehaviorSubject(false);  
   locationMenu = new BehaviorSubject<string>("");  
 
   constructor(
@@ -39,9 +40,15 @@ export class AuthService {
       this.router.navigateByUrl('/');
       //console.log(token);
     }
+
+    iAmPremium(isPremium:boolean){
+      this.isPremium.next(isPremium);
+      //console.log(token);
+    }
   
     logOut():void{
       this.isLogged.next(false);
+      this.isPremium.next(false);
       localStorage.removeItem('token');
       this.router.navigateByUrl('/');
     }
