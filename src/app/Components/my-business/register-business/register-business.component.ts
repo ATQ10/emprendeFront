@@ -101,6 +101,7 @@ constructor(
         this.toastr.warning(response['message']);
       }else{
         this.toastr.success(response['message']);
+        this.submitButton = "Registrar";
         this.businessForm.reset();
         this.url = "";
       }
